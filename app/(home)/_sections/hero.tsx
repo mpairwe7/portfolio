@@ -11,6 +11,7 @@ import { profile } from "@/lib/content/profile"
 import { scrollToSection } from "@/hooks/use-scroll-nav"
 import { OrbField } from "@/components/bg/orb-field"
 import { GridMesh } from "@/components/bg/grid-mesh"
+import { MagneticButton } from "@/components/motion/magnetic-button"
 
 export function Hero() {
   const [typingIndex, setTypingIndex] = useState(0)
@@ -103,13 +104,15 @@ export function Hero() {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              <Button
-                onClick={() => scrollToSection("contact")}
-                size="lg"
-                className="shadow-[0_8px_32px_-12px_hsl(var(--primary)/0.6)]"
-              >
-                Get in touch
-              </Button>
+              <MagneticButton strength={0.18}>
+                <Button
+                  onClick={() => scrollToSection("contact")}
+                  size="lg"
+                  className="shadow-[0_8px_32px_-12px_hsl(var(--primary)/0.6)]"
+                >
+                  Get in touch
+                </Button>
+              </MagneticButton>
               <Button
                 variant="outline"
                 size="lg"

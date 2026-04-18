@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { NoiseLayer } from "@/components/bg/noise-layer"
 import { CommandPalette } from "@/components/command/command-palette"
 import { ShortcutOverlay } from "@/components/command/shortcut-overlay"
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Toaster } from "sonner"
 import { profile } from "@/lib/content/profile"
 import { ionatec } from "@/lib/content/ionatec"
@@ -161,6 +163,8 @@ export default function RootLayout({
           <ShortcutOverlay />
           <NoiseLayer />
           <Toaster richColors position="top-right" closeButton theme="dark" />
+          <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
