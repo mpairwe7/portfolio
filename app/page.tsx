@@ -6,6 +6,7 @@ import { Skills } from "./(home)/_sections/skills"
 import { Experience } from "./(home)/_sections/experience"
 import { Education } from "./(home)/_sections/education"
 import { About } from "./(home)/_sections/about"
+import { Certifications } from "./(home)/_sections/certifications"
 import { References } from "./(home)/_sections/references"
 import { Clients } from "./(home)/_sections/clients"
 import { Contact } from "./(home)/_sections/contact"
@@ -32,6 +33,7 @@ export default function Portfolio() {
         <Experience />
         <Education />
         <About />
+        <Certifications />
         <References />
         <Clients />
         <Contact />

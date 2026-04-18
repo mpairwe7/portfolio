@@ -12,6 +12,7 @@ import {
   domainCards,
   domainSkills,
   skillBars,
+  skillStacks,
 } from "@/lib/content/skills"
 import { profile } from "@/lib/content/profile"
 
@@ -20,6 +21,9 @@ const DomainIcon = {
   brain: BarChart,
   phone: Smartphone,
 } as const
+
+const featuredStacks = skillStacks.filter((s) => s.featured)
+const secondaryStacks = skillStacks.filter((s) => !s.featured)
 
 export function Skills() {
   const [skillsAnimated, setSkillsAnimated] = useState(false)
@@ -46,14 +50,81 @@ export function Skills() {
       <div className="container mx-auto px-4">
         <Reveal>
           <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight">
-            My Skills
+            Skills
           </h2>
           <p className="text-sm font-mono text-muted-foreground uppercase tracking-widest mb-10">
-            — technical stack & domain expertise
+            — the stacks I ship on
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* ── Featured stacks — DevSecOps · MLOps · Agentic ─────────────── */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-14">
+          {featuredStacks.map((stack, i) => (
+            <Reveal key={stack.key} delay={i * 0.08}>
+              <MotionLift amount="subtle" className="h-full">
+                <GlassCard variant="card" className="p-6 h-full">
+                  <div className="flex items-baseline gap-3 mb-1">
+                    <h3 className="text-lg font-semibold">{stack.title}</h3>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-primary">
+                      featured
+                    </span>
+                  </div>
+                  <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-5">
+                    {stack.subtitle}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {stack.tools.map((t) => (
+                      <Badge
+                        key={t}
+                        variant="outline"
+                        className="text-[10px] font-mono uppercase tracking-wider border-primary/20 bg-primary/5"
+                      >
+                        {t}
+                      </Badge>
+                    ))}
+                  </div>
+                </GlassCard>
+              </MotionLift>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* ── Secondary stacks ──────────────────────────────────────────── */}
+        <Reveal>
+          <h3 className="text-sm font-mono uppercase tracking-widest text-muted-foreground mb-5">
+            — broader stack
+          </h3>
+        </Reveal>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          {secondaryStacks.map((stack, i) => (
+            <Reveal key={stack.key} delay={i * 0.05}>
+              <GlassCard
+                variant="card"
+                intensity="low"
+                className="p-5 h-full"
+              >
+                <p className="text-sm font-semibold mb-0.5">{stack.title}</p>
+                <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">
+                  {stack.subtitle}
+                </p>
+                <div className="flex flex-wrap gap-1">
+                  {stack.tools.map((t) => (
+                    <Badge
+                      key={t}
+                      variant="outline"
+                      className="text-[10px] font-mono uppercase tracking-wider"
+                    >
+                      {t}
+                    </Badge>
+                  ))}
+                </div>
+              </GlassCard>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* ── Proficiency + Domain expertise ────────────────────────────── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
           <Reveal delay={0.1}>
             <h3 className="text-lg font-semibold mb-6 font-mono uppercase tracking-wider">
               Technical Proficiency
@@ -102,7 +173,8 @@ export function Skills() {
           </Reveal>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* ── Domain narrative cards ────────────────────────────────────── */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {domainCards.map((card, i) => {
             const Icon = DomainIcon[card.iconKey]
             return (
