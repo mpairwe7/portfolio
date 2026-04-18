@@ -2,44 +2,49 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
+import { Reveal } from "@/components/motion/reveal"
 import { profile } from "@/lib/content/profile"
 import { contactAboutFields } from "@/lib/content/socials"
 
 export function About() {
   return (
-    <section id="about" className="py-20 bg-muted/30">
+    <section id="about" className="py-24 relative">
       <div className="container mx-auto px-4">
-        <div className="section-reveal">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 relative">
+        <Reveal>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight">
             About Me
-            <span className="block h-1 w-20 bg-primary mt-4" aria-hidden="true" />
           </h2>
-        </div>
+          <p className="text-sm font-mono text-muted-foreground uppercase tracking-widest mb-10">
+            — who I am
+          </p>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="relative section-reveal">
-            <div
-              className="absolute -inset-4 rounded-xl bg-gradient-to-r from-primary/20 to-primary/5 blur-xl"
-              aria-hidden="true"
-            />
-            <div className="relative overflow-hidden rounded-xl">
-              <Image
-                src="/images/lauben.jpg"
-                alt={`${profile.fullName} — software engineer based in ${profile.location}`}
-                width={600}
-                height={600}
-                className="w-full h-auto object-cover rounded-xl"
+          <Reveal>
+            <div className="relative">
+              <div
+                className="absolute -inset-6 rounded-2xl bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-2xl"
+                aria-hidden="true"
               />
+              <div className="relative overflow-hidden rounded-2xl glass-surface-subtle p-1">
+                <Image
+                  src="/images/lauben.jpg"
+                  alt={`${profile.fullName} — software engineer based in ${profile.location}`}
+                  width={600}
+                  height={600}
+                  className="w-full h-auto object-cover rounded-xl"
+                />
+              </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="section-reveal reveal-delay-1">
+          <Reveal delay={0.15}>
             <p
               className="text-lg mb-4 leading-relaxed"
               dangerouslySetInnerHTML={{
                 __html: profile.aboutParagraphs[0].replace(
                   /\*\*(.+?)\*\*/g,
-                  "<strong>$1</strong>"
+                  "<strong class='text-foreground'>$1</strong>"
                 ),
               }}
             />
@@ -53,10 +58,10 @@ export function About() {
             <dl className="grid grid-cols-2 gap-4 mb-8 text-sm">
               {contactAboutFields.map(({ label, value }) => (
                 <div key={label}>
-                  <dt className="font-semibold text-primary text-xs uppercase tracking-wide">
+                  <dt className="font-mono text-primary text-[10px] uppercase tracking-widest">
                     {label}
                   </dt>
-                  <dd className="text-muted-foreground mt-0.5">{value}</dd>
+                  <dd className="text-muted-foreground mt-1">{value}</dd>
                 </div>
               ))}
             </dl>
@@ -67,7 +72,7 @@ export function About() {
                 Download Resume
               </Link>
             </Button>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

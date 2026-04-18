@@ -32,37 +32,38 @@ export function Nav() {
       aria-label="Main navigation"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/90 backdrop-blur-md shadow-sm border-b border-border/40 py-3"
-          : "bg-transparent py-5"
+          ? "glass-surface-subtle py-3 border-b-0"
+          : "bg-transparent py-5 border-transparent"
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <button
           onClick={scrollToTop}
-          className="font-bold text-xl text-primary hover:opacity-75 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+          className="font-bold text-xl font-mono text-primary hover:opacity-75 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm tracking-tight"
           aria-label="Go to top"
         >
           {profile.shortName}
         </button>
 
-        <ul className="hidden md:flex items-center space-x-6" role="list">
+        <ul className="hidden md:flex items-center space-x-1" role="list">
           {navItems.map(({ id, label }) => (
             <li key={id}>
               <button
                 onClick={() => handleNav(id)}
                 aria-current={activeSection === id ? "page" : undefined}
-                className={`relative text-sm transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm px-1 ${
+                className={`relative text-sm px-3 py-1.5 rounded-full transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                   activeSection === id
-                    ? "text-primary font-semibold"
+                    ? "text-primary"
                     : "text-muted-foreground"
                 }`}
               >
                 {label}
-                <span
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-primary rounded-full transition-all duration-300 ${
-                    activeSection === id ? "w-full" : "w-0"
-                  }`}
-                />
+                {activeSection === id && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 -z-10 rounded-full bg-primary/10 border border-primary/20"
+                  />
+                )}
               </button>
             </li>
           ))}
@@ -106,7 +107,7 @@ export function Nav() {
       {mobileMenuOpen && (
         <div
           id="mobile-nav"
-          className="md:hidden bg-background/95 backdrop-blur-md border-t border-border"
+          className="md:hidden glass-surface-strong border-t border-border/40"
         >
           <ul className="flex flex-col py-2" role="list">
             {navItems.map(({ id, label }) => (
@@ -114,9 +115,9 @@ export function Nav() {
                 <button
                   onClick={() => handleNav(id)}
                   aria-current={activeSection === id ? "page" : undefined}
-                  className={`w-full text-left px-6 py-3 text-sm transition-colors hover:text-primary hover:bg-muted ${
+                  className={`w-full text-left px-6 py-3 text-sm transition-colors hover:text-primary hover:bg-primary/5 ${
                     activeSection === id
-                      ? "text-primary font-semibold bg-muted/50"
+                      ? "text-primary font-semibold bg-primary/5"
                       : "text-muted-foreground"
                   }`}
                 >

@@ -9,6 +9,7 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./content/**/*.{md,mdx}",
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   prefix: "",
@@ -22,8 +23,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        // P3: Inter via CSS variable from next/font — fallback to system sans
-        sans: ["var(--font-inter)", ...fontFamily.sans],
+        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -64,6 +65,10 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      backdropBlur: {
+        xs: "4px",
+        "3xl": "48px",
       },
       keyframes: {
         "accordion-down": {

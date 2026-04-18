@@ -1,5 +1,5 @@
 import type React from "react"
-import { Card } from "@/components/ui/card"
+import { GlassCard } from "@/components/glass/glass-card"
 
 export function SkillCard({
   skill,
@@ -9,7 +9,11 @@ export function SkillCard({
   icon: React.ReactNode
 }) {
   return (
-    <Card className="p-4 flex items-center gap-3 hover:border-primary transition-colors cursor-default">
+    <GlassCard
+      variant="card"
+      intensity="low"
+      className="p-4 flex items-center gap-3 cursor-default"
+    >
       <div
         className="bg-primary/10 p-2.5 rounded-full text-primary shrink-0"
         aria-hidden="true"
@@ -17,6 +21,6 @@ export function SkillCard({
         {icon}
       </div>
       <span className="font-medium text-sm">{skill}</span>
-    </Card>
+    </GlassCard>
   )
 }

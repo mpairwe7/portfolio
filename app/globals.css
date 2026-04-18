@@ -3,54 +3,66 @@
 @tailwind utilities;
 
 @layer base {
+  /* Light mode — deliberate alt theme, warm ochre */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --background: 30 15% 97%;
+    --foreground: 24 20% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 24 20% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 346 83% 60%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
+    --popover-foreground: 24 20% 10%;
+    --primary: 28 85% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 12% 92%;
+    --secondary-foreground: 24 20% 10%;
+    --muted: 30 10% 92%;
+    --muted-foreground: 24 12% 40%;
+    --accent: 30 12% 92%;
+    --accent-foreground: 24 20% 10%;
+    --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 346 83% 60%;
-    --radius: 0.5rem;
+    --border: 24 10% 88%;
+    --input: 24 10% 88%;
+    --ring: 28 85% 45%;
+    --radius: 0.75rem;
+
+    /* glass surface paints */
+    --glass-surface: 255 255 255 / 0.65;
+    --glass-hairline: 0 0 0 / 0.06;
+    --glass-highlight: 0 0 0 / 0.1;
+    --noise-opacity: 0.02;
   }
 
+  /* Dark-first Grok warm-amber — the primary aesthetic */
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 346 83% 60%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --background: 24 6% 4%;
+    --foreground: 30 8% 95%;
+    --card: 24 6% 7%;
+    --card-foreground: 30 8% 95%;
+    --popover: 24 8% 8%;
+    --popover-foreground: 30 8% 95%;
+    --primary: 38 95% 60%;
+    --primary-foreground: 24 15% 8%;
+    --secondary: 24 5% 12%;
+    --secondary-foreground: 30 8% 95%;
+    --muted: 24 5% 12%;
+    --muted-foreground: 30 8% 65%;
+    --accent: 24 5% 14%;
+    --accent-foreground: 30 8% 95%;
+    --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 346 83% 60%;
+    --border: 30 6% 14%;
+    --input: 30 6% 14%;
+    --ring: 38 95% 60%;
+
+    --glass-surface: 255 255 255 / 0.03;
+    --glass-hairline: 255 255 255 / 0.08;
+    --glass-highlight: 255 255 255 / 0.14;
+    --noise-opacity: 0.025;
   }
 }
 
 @layer base {
-  /* P1: CSS-native smooth scrolling — more reliable than JS-only */
   html {
     scroll-behavior: smooth;
   }
@@ -59,55 +71,129 @@
     @apply border-border;
   }
 
-  /* P3: antialiased — crisp text on all displays */
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* P1: scroll-margin-top — reliable offset for fixed nav (replaces offsetTop-80 hack) */
   section[id] {
     scroll-margin-top: 5rem;
+  }
+
+  /* Ambient warm-amber glow behind the entire canvas — subtle, layered */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, hsl(var(--primary) / 0.08), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 80% 80%, hsl(var(--primary) / 0.04), transparent 70%);
   }
 }
 
 @layer utilities {
-  /* ── Hero entrance animations ────────────────────────── */
+  /* ── Glass surfaces ──────────────────────────────────────── */
+  .glass-surface {
+    background: rgb(var(--glass-surface));
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border: 1px solid rgb(var(--glass-hairline));
+    border-top-color: rgb(var(--glass-highlight));
+  }
+  .glass-surface-strong {
+    background: rgb(var(--glass-surface));
+    backdrop-filter: blur(32px) saturate(1.6);
+    -webkit-backdrop-filter: blur(32px) saturate(1.6);
+    border: 1px solid rgb(var(--glass-hairline));
+    border-top-color: rgb(var(--glass-highlight));
+  }
+  .glass-surface-subtle {
+    background: rgb(var(--glass-surface));
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    border: 1px solid rgb(var(--glass-hairline));
+  }
+  .hairline-top {
+    position: relative;
+  }
+  .hairline-top::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgb(var(--glass-highlight)),
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  /* Mobile: soften blur for performance on low-end devices */
+  @media (max-width: 768px) {
+    .glass-surface,
+    .glass-surface-strong,
+    .glass-surface-subtle {
+      backdrop-filter: blur(14px) saturate(1.2);
+      -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    }
+  }
+
+  /* ── Ambient orb drift ─────────────────────────────────── */
+  @keyframes orb-drift {
+    0%   { transform: translate(0, 0) scale(1); }
+    33%  { transform: translate(40px, -30px) scale(1.08); }
+    66%  { transform: translate(-30px, 20px) scale(0.95); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  .animate-orb-drift {
+    animation: orb-drift 28s ease-in-out infinite;
+  }
+  .animate-orb-drift-slow {
+    animation: orb-drift 44s ease-in-out infinite;
+  }
+  .animate-orb-drift-fast {
+    animation: orb-drift 20s ease-in-out infinite;
+  }
+
+  /* ── Hero entrance (legacy — kept for no-JS fallback) ──── */
   .animate-fade-in {
-    animation: fadeIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+    animation: fadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
   .animate-fade-in-delay {
-    animation: fadeIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.25s both;
+    animation: fadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
   }
   .animate-fade-in-delay-2 {
-    animation: fadeIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
+    animation: fadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
   }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0);    }
   }
 
-  /* ── Scroll-triggered section reveal ────────────────── */
+  /* ── Scroll-triggered section reveal (legacy — <Reveal /> supersedes) ── */
   .section-reveal {
     opacity: 0;
     transform: translateY(28px);
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .section-reveal.revealed {
     opacity: 1;
     transform: translateY(0);
   }
-  /* Stagger helpers for child grids */
   .reveal-delay-1 { transition-delay: 0.08s; }
   .reveal-delay-2 { transition-delay: 0.16s; }
   .reveal-delay-3 { transition-delay: 0.24s; }
   .reveal-delay-4 { transition-delay: 0.32s; }
 
-  /* ── Skip-to-content link ────────────────────────────── */
+  /* ── Skip-to-content ─────────────────────────────────────── */
   .skip-link {
     @apply sr-only;
   }
@@ -116,7 +202,7 @@
            px-4 py-2 rounded-md text-sm font-semibold shadow-lg;
   }
 
-  /* ── P1: prefers-reduced-motion — disable all animations ── */
+  /* ── prefers-reduced-motion ──────────────────────────────── */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
 
@@ -135,7 +221,10 @@
       transition: none !important;
     }
 
-    .animate-pulse {
+    .animate-pulse,
+    .animate-orb-drift,
+    .animate-orb-drift-slow,
+    .animate-orb-drift-fast {
       animation: none !important;
     }
 

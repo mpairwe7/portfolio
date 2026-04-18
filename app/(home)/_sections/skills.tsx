@@ -1,9 +1,11 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { BarChart, Cloud, Smartphone } from "lucide-react"
+import { GlassCard } from "@/components/glass/glass-card"
+import { Reveal } from "@/components/motion/reveal"
+import { MotionLift } from "@/components/motion/motion-lift"
 import { SkillBar } from "@/components/skill-bar"
 import { SkillCard } from "@/components/skill-card"
 import {
@@ -40,18 +42,22 @@ export function Skills() {
   }, [])
 
   return (
-    <section id="skills" className="py-20" ref={skillsSectionRef}>
+    <section id="skills" className="py-24 relative" ref={skillsSectionRef}>
       <div className="container mx-auto px-4">
-        <div className="section-reveal">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 relative">
+        <Reveal>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight">
             My Skills
-            <span className="block h-1 w-20 bg-primary mt-4" aria-hidden="true" />
           </h2>
-        </div>
+          <p className="text-sm font-mono text-muted-foreground uppercase tracking-widest mb-10">
+            — technical stack & domain expertise
+          </p>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="section-reveal reveal-delay-1">
-            <h3 className="text-xl font-semibold mb-6">Technical Proficiency</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <Reveal delay={0.1}>
+            <h3 className="text-lg font-semibold mb-6 font-mono uppercase tracking-wider">
+              Technical Proficiency
+            </h3>
             <div className="space-y-5">
               {skillBars.map(({ skill, pct }) => (
                 <SkillBar
@@ -61,11 +67,13 @@ export function Skills() {
                 />
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <div className="section-reveal reveal-delay-2">
-            <h3 className="text-xl font-semibold mb-6">Domain Expertise</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <Reveal delay={0.2}>
+            <h3 className="text-lg font-semibold mb-6 font-mono uppercase tracking-wider">
+              Domain Expertise
+            </h3>
+            <div className="grid grid-cols-2 gap-3">
               {domainSkills.map(({ skill, icon: Icon }) => (
                 <SkillCard
                   key={skill}
@@ -76,7 +84,9 @@ export function Skills() {
             </div>
 
             <div className="mt-8">
-              <h3 className="text-xl font-semibold mb-4">Spoken Languages</h3>
+              <h3 className="text-lg font-semibold mb-4 font-mono uppercase tracking-wider">
+                Spoken Languages
+              </h3>
               <div className="flex gap-3 flex-wrap">
                 {profile.languages.map((lang) => (
                   <Badge
@@ -89,34 +99,42 @@ export function Skills() {
                 ))}
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           {domainCards.map((card, i) => {
             const Icon = DomainIcon[card.iconKey]
             return (
-              <Card
-                key={card.title}
-                className={`section-reveal reveal-delay-${i + 1} p-6 hover:shadow-lg transition-shadow border-t-4 ${card.borderColor}`}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className={`${card.iconBg} p-3 rounded-full`}>
-                    <Icon className={`h-6 w-6 ${card.iconTint}`} />
-                  </div>
-                  <h4 className="text-base font-semibold">{card.title}</h4>
-                </div>
-                <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                  {card.desc}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {card.tags.map((t) => (
-                    <Badge key={t} variant="outline" className="text-xs">
-                      {t}
-                    </Badge>
-                  ))}
-                </div>
-              </Card>
+              <Reveal key={card.title} delay={i * 0.1}>
+                <MotionLift amount="subtle">
+                  <GlassCard
+                    variant="card"
+                    className={`p-6 border-t-4 ${card.borderColor}`}
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className={`${card.iconBg} p-3 rounded-full`}>
+                        <Icon className={`h-6 w-6 ${card.iconTint}`} />
+                      </div>
+                      <h4 className="text-base font-semibold">{card.title}</h4>
+                    </div>
+                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                      {card.desc}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {card.tags.map((t) => (
+                        <Badge
+                          key={t}
+                          variant="outline"
+                          className="text-[10px] font-mono uppercase tracking-wider"
+                        >
+                          {t}
+                        </Badge>
+                      ))}
+                    </div>
+                  </GlassCard>
+                </MotionLift>
+              </Reveal>
             )
           })}
         </div>

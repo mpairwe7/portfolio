@@ -1,35 +1,39 @@
-import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Briefcase, ChevronRight } from "lucide-react"
+import { GlassCard } from "@/components/glass/glass-card"
+import { Reveal } from "@/components/motion/reveal"
 import { experiences } from "@/lib/content/experience"
 
 export function Experience() {
   return (
-    <section id="experience" className="py-20 bg-muted/30">
+    <section id="experience" className="py-24 relative">
       <div className="container mx-auto px-4">
-        <div className="section-reveal">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 relative">
+        <Reveal>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight">
             Work Experience
-            <span className="block h-1 w-20 bg-primary mt-4" aria-hidden="true" />
           </h2>
-        </div>
+          <p className="text-sm font-mono text-muted-foreground uppercase tracking-widest mb-10">
+            — 6 years · 6 teams
+          </p>
+        </Reveal>
 
         <div className="relative">
           <div
-            className="absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-px hidden md:block"
+            className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/20 to-transparent -translate-x-px hidden md:block"
             aria-hidden="true"
           />
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
-              <div
+              <Reveal
                 key={`${exp.company}-${index}`}
-                className={`section-reveal relative flex flex-col md:flex-row gap-0 ${
+                delay={0.05}
+                className={`relative flex flex-col md:flex-row gap-0 ${
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
                 <div
-                  className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background z-10 top-6"
+                  className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary z-10 top-6 shadow-[0_0_16px_hsl(var(--primary)/0.6)]"
                   aria-hidden="true"
                 />
 
@@ -41,10 +45,10 @@ export function Experience() {
                   }`}
                 >
                   <div>
-                    <p className="text-sm font-semibold text-primary">
+                    <p className="text-sm font-mono font-semibold text-primary">
                       {exp.period}
                     </p>
-                    <Badge variant="secondary" className="mt-1 text-xs">
+                    <Badge variant="secondary" className="mt-1 text-[10px] font-mono uppercase tracking-wider">
                       {exp.type}
                     </Badge>
                   </div>
@@ -53,8 +57,9 @@ export function Experience() {
                 <div
                   className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pl-10" : "md:pr-10"}`}
                 >
-                  <Card
-                    className={`p-6 hover:shadow-lg transition-all duration-300 border-l-4 ${exp.borderColor}`}
+                  <GlassCard
+                    variant="card"
+                    className={`p-6 border-l-4 ${exp.borderColor}`}
                   >
                     <div className="mb-3">
                       <div className="flex items-start justify-between gap-2">
@@ -69,7 +74,7 @@ export function Experience() {
                           aria-hidden="true"
                         />
                       </div>
-                      <p className="text-xs text-muted-foreground mt-1 md:hidden">
+                      <p className="text-xs text-muted-foreground mt-1 font-mono md:hidden">
                         {exp.period} · {exp.type}
                       </p>
                     </div>
@@ -87,20 +92,20 @@ export function Experience() {
                         </li>
                       ))}
                     </ul>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {exp.tags.map((tag) => (
                         <Badge
                           key={tag}
                           variant="secondary"
-                          className="text-xs"
+                          className="text-[10px] font-mono uppercase tracking-wider"
                         >
                           {tag}
                         </Badge>
                       ))}
                     </div>
-                  </Card>
+                  </GlassCard>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

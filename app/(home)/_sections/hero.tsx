@@ -5,14 +5,18 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
+import { motion, useReducedMotion } from "motion/react"
 import { typingRoles } from "@/lib/content/hero"
 import { profile } from "@/lib/content/profile"
 import { scrollToSection } from "@/hooks/use-scroll-nav"
+import { OrbField } from "@/components/bg/orb-field"
+import { GridMesh } from "@/components/bg/grid-mesh"
 
 export function Hero() {
   const [typingIndex, setTypingIndex] = useState(0)
   const [displayedText, setDisplayedText] = useState("")
   const [isDeleting, setIsDeleting] = useState(false)
+  const reduce = useReducedMotion()
 
   useEffect(() => {
     if (
@@ -48,18 +52,20 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center pt-20"
+      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
     >
-      <div className="absolute inset-0 z-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 to-background" />
-        <div className="absolute inset-0 bg-[url('/images/header.jpg')] bg-cover bg-center bg-fixed opacity-10" />
-      </div>
+      <OrbField density="normal" />
+      <GridMesh variant="dots" />
 
-      <div className="container mx-auto px-4 z-10">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className="flex lg:hidden justify-center mb-6">
-              <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-primary/30 shadow-lg">
+              <div className="relative w-24 h-24 rounded-full overflow-hidden border border-primary/30 shadow-lg">
                 <Image
                   src="/images/lauben.jpg"
                   alt={`${profile.fullName} — profile photo`}
@@ -70,15 +76,15 @@ export function Hero() {
               </div>
             </div>
 
-            <p className="text-primary font-medium mb-2 animate-fade-in">
+            <p className="text-primary font-mono text-xs tracking-widest uppercase mb-4">
               {profile.greeting}
             </p>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-5 tracking-tight leading-[0.95]">
               {profile.fullName}
             </h1>
 
             <div
-              className="text-xl md:text-2xl mb-6 animate-fade-in-delay min-h-[2rem]"
+              className="text-xl md:text-2xl mb-7 min-h-[2rem]"
               aria-live="polite"
               aria-label={`I'm a ${displayedText}`}
             >
@@ -92,12 +98,16 @@ export function Hero() {
               </span>
             </div>
 
-            <p className="text-muted-foreground mb-8 max-w-lg text-base animate-fade-in-delay leading-relaxed">
+            <p className="text-muted-foreground mb-8 max-w-lg text-base leading-relaxed">
               {profile.heroTagline}
             </p>
 
-            <div className="flex flex-wrap gap-3 animate-fade-in-delay-2">
-              <Button onClick={() => scrollToSection("contact")} size="lg">
+            <div className="flex flex-wrap gap-3">
+              <Button
+                onClick={() => scrollToSection("contact")}
+                size="lg"
+                className="shadow-[0_8px_32px_-12px_hsl(var(--primary)/0.6)]"
+              >
                 Get in touch
               </Button>
               <Button
@@ -115,27 +125,43 @@ export function Hero() {
               </Button>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 mt-12 animate-fade-in-delay-2">
-              {profile.heroStats.map((stat) => (
-                <div key={stat.label} className="text-center">
+            <div className="grid grid-cols-3 gap-6 mt-12 max-w-md">
+              {profile.heroStats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  className="text-center"
+                  initial={reduce ? false : { opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.6 + i * 0.1,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
                   <p
-                    className="text-3xl font-bold text-primary"
+                    className="text-3xl font-mono font-semibold text-primary tabular-nums"
                     aria-label={stat.value}
                   >
                     {stat.value}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-muted-foreground mt-1 font-mono uppercase tracking-wider">
                     {stat.label}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="hidden lg:flex justify-center" aria-hidden="true">
+          <motion.div
+            className="hidden lg:flex justify-center"
+            aria-hidden="true"
+            initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          >
             <div className="relative">
-              <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-primary/30 to-primary/5 blur-2xl" />
-              <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
+              <div className="absolute -inset-8 rounded-full bg-gradient-to-br from-primary/30 via-primary/10 to-transparent blur-3xl" />
+              <div className="relative w-80 h-80 rounded-full overflow-hidden border border-primary/20 shadow-2xl">
                 <Image
                   src="/images/lauben.jpg"
                   alt={profile.fullName}
@@ -144,19 +170,19 @@ export function Hero() {
                   priority
                 />
               </div>
-              <div className="absolute -bottom-4 -left-4 bg-background border border-border rounded-xl px-3 py-2 shadow-lg">
+              <div className="absolute -bottom-4 -left-4 glass-surface rounded-xl px-3 py-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-xs font-medium">
+                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_hsl(142_76%_60%)]" />
+                  <span className="text-xs font-medium font-mono">
                     {profile.availability}
                   </span>
                 </div>
               </div>
-              <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-xl px-3 py-2 shadow-lg text-xs font-medium">
+              <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-xl px-3 py-2 shadow-lg text-xs font-medium font-mono">
                 {profile.locationBadge}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
