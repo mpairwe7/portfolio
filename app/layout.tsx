@@ -4,6 +4,8 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { ThemeProvider } from "@/components/theme-provider"
 import { NoiseLayer } from "@/components/bg/noise-layer"
+import { CommandPalette } from "@/components/command/command-palette"
+import { ShortcutOverlay } from "@/components/command/shortcut-overlay"
 import { Toaster } from "sonner"
 import { profile } from "@/lib/content/profile"
 import { ionatec } from "@/lib/content/ionatec"
@@ -155,6 +157,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <CommandPalette />
+          <ShortcutOverlay />
           <NoiseLayer />
           <Toaster richColors position="top-right" closeButton theme="dark" />
         </ThemeProvider>

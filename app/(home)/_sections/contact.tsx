@@ -19,6 +19,7 @@ import { Reveal } from "@/components/motion/reveal"
 import { contactSchema, type ContactFormValues } from "@/lib/content/contact"
 import { contactLinks } from "@/lib/content/socials"
 import { profile } from "@/lib/content/profile"
+import { sendContact } from "@/app/actions/send-contact"
 
 const ContactIcon = {
   mail: Mail,
@@ -30,19 +31,29 @@ const ContactIcon = {
 
 export function Contact() {
   const [formSubmitting, setFormSubmitting] = useState(false)
+  const [honeypot, setHoneypot] = useState("")
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", email: "", subject: "", message: "" },
   })
 
-  const onSubmit = async (_values: ContactFormValues) => {
+  const onSubmit = async (values: ContactFormValues) => {
     setFormSubmitting(true)
-    // TODO(P6): wire up to Resend server action
-    await new Promise((r) => setTimeout(r, 1400))
-    toast.success("Message sent! I'll get back to you soon.")
-    form.reset()
-    setFormSubmitting(false)
+    try {
+      const result = await sendContact({ ...values, website: honeypot })
+      if (result.ok) {
+        toast.success("Message sent! I'll get back within 48 hours.")
+        form.reset()
+        setHoneypot("")
+      } else {
+        toast.error(result.error)
+      }
+    } catch {
+      toast.error("Network error. Please try again — or email directly.")
+    } finally {
+      setFormSubmitting(false)
+    }
   }
 
   return (
@@ -195,6 +206,17 @@ export function Contact() {
                         <FormMessage />
                       </FormItem>
                     )}
+                  />
+
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    className="absolute left-[-9999px] w-px h-px opacity-0 pointer-events-none"
                   />
 
                   <Button
