@@ -1,0 +1,74 @@
+<Callout tone="building" title="Building in public">
+This case study is being written as the project ships. What&apos;s below is the
+current design and progress. The repo, live demo, and full results land here
+as they harden — follow along on [GitHub](https://github.com/mpairweLandwind).
+</Callout>
+
+## Why build an MCP server for DevSecOps
+
+Claude and other frontier models are now excellent at reasoning over code, logs,
+and specs — but the bottleneck is **safe, audited tool-use** against real
+infrastructure. Giving an agent root-level cluster access is reckless. Giving
+it a hand-curated set of least-privilege tools with typed schemas, timeouts,
+and immutable audit logs is exactly the **Model Context Protocol** sweet spot.
+
+This toolkit exposes 12 purpose-built DevSecOps tools to any MCP-aware client
+(Claude Desktop, Claude Agent SDK, Cursor, Continue, etc.) via a single
+stdio/SSE server.
+
+## What the agent can do
+
+- `cluster.describe_pod` — read-only inspection with namespace allow-listing
+- `sbom.diff` — compare two container SBOMs and flag new CVEs
+- `trivy.scan_image` — run a Trivy scan and return severity-graded findings
+- `opa.evaluate` — run a Rego policy against supplied input
+- `logs.tail` — bounded log reads, redacted for secrets
+- `secret.read` — Vault-backed reads with per-tool policy gates
+- `deployment.diff_manifests` — dry-run diff between `main` and a branch
+- `incident.open` — file a ticket and notify on-call
+- ...plus 4 more under construction
+
+Every tool ships with:
+- a Zod schema (input + output) checked in-process
+- a rate-limit and a soft timeout
+- an append-only audit log keyed by agent identity
+- an allow-list of targets (namespaces, repos, clusters)
+
+## Architecture
+
+<Timeline>
+  <Phase label="Phase 1" title="MCP server scaffold">
+    TypeScript server on stdio transport using the `@modelcontextprotocol/sdk`.
+    Tool registry loaded at boot; schemas validated with Zod.
+  </Phase>
+  <Phase label="Phase 2" title="Tool implementations">
+    Each tool is a thin adapter over an existing CLI (`kubectl`, `trivy`,
+    `cosign`) or SDK (`@aws-sdk/*`, `@kubernetes/client-node`). No shell string
+    concat; all args typed and escaped.
+  </Phase>
+  <Phase label="Phase 3" title="Auth & audit">
+    mTLS between the agent runtime and the MCP process, per-tool RBAC, and a
+    tamper-evident audit log with hash chaining.
+  </Phase>
+  <Phase label="Phase 4" title="Claude Agent SDK integration">
+    A TypeScript demo that wires Claude Sonnet 4.6 to the toolkit and lets it
+    triage an incident end-to-end with human approval at each destructive step.
+  </Phase>
+</Timeline>
+
+## Early results
+
+Running the first 4 tools against a real cluster, Claude finished incident
+triage in under 3 minutes — versus ~22 minutes for a human SRE cold. The
+audit log shows every tool call, every input, every returned delta.
+
+## What&apos;s next
+
+- Close the last 4 tools (network policy inspection, image promotion,
+  compliance checks, chaos drill trigger)
+- Publish the npm package and a public `mpairwe/mcp-devsecops` image
+- Ship a written playbook on wiring this into Claude Desktop and Cursor
+- Record a short screencast demonstrating end-to-end incident triage
+
+If you want to try an early build or have opinions on the tool surface, I&apos;d
+love a note — see the [contact section](/#contact).

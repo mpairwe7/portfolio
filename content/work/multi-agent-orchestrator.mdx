@@ -1,0 +1,79 @@
+<Callout tone="building" title="Building in public">
+Five specialised agents run in this orchestrator today; the sixth and seventh
+are in design. Architecture and early results below — treat ship-rate numbers
+as a snapshot from a single design-partner project, not a benchmark.
+</Callout>
+
+## Why multi-agent
+
+For small tasks, single-shot Claude is usually the best choice — simpler,
+cheaper, faster. But for work that spans research, planning, coding, review,
+and verification — and that benefits from *separation of concerns* — a
+single monolithic prompt rots fast.
+
+This orchestrator treats each concern as a specialised agent with its own
+prompt, its own tools, and its own success rubric. A top-level planner
+assigns work, a shared state store keeps everyone honest, and a reviewer
+agent rejects output that doesn&apos;t meet spec.
+
+## The five agents
+
+- **Planner** — decomposes a user goal into a typed DAG of tasks; chooses
+  which specialist handles each node
+- **Researcher** — spec fetching, code archaeology, dependency checking;
+  read-only tools
+- **Engineer** — writes and edits code; has scoped write access and can run
+  tests
+- **Reviewer** — reads the diff, runs the review checklist, accepts or
+  rejects with specific feedback
+- **Integrator** — handles the git/CI dance: branch, commit, PR, status checks
+
+Shared state is persisted in Redis (hot) + Postgres (durable). Every agent
+message is content-addressed and replayable — the whole session can be
+re-run deterministically from a checkpoint.
+
+## Built on LangGraph + Claude Agent SDK
+
+<Timeline>
+  <Phase label="Core" title="LangGraph state machine">
+    Nodes are agents; edges are task handoffs. Conditional edges route based
+    on reviewer verdicts (accept / revise / escalate).
+  </Phase>
+  <Phase label="Agents" title="Claude Agent SDK runtimes">
+    Each agent is a Claude Agent SDK process with its own tool permissions.
+    Ephemeral, so one compromised agent can&apos;t affect another.
+  </Phase>
+  <Phase label="Tools" title="Typed tool contracts">
+    All tools expose Zod schemas. The orchestrator validates inputs and
+    outputs at the state-machine boundary — bad shapes never hit the tool.
+  </Phase>
+  <Phase label="Humans" title="Configurable checkpoints">
+    Every destructive action can gate on human approval. Approvals are
+    signed and stored in the audit log with the agent&apos;s reasoning.
+  </Phase>
+</Timeline>
+
+## Early numbers
+
+On a real refactor task (cross-file Go change, tests, and a migration), the
+orchestrator finished in ~28 minutes end-to-end. A baseline single-agent
+prompt with the same tools finished in ~92 minutes and needed two retry
+prompts to fix a missed edge case — roughly 3× slower.
+
+The reviewer agent caught 7 defects the engineer would have shipped. The
+integrator cleanly handled the PR dance without hallucinating branch names.
+
+## Open questions
+
+- How do you evaluate a multi-agent system rigorously? Single-agent evals
+  extend poorly. Working on a harness based on end-state correctness + cost.
+- When does the overhead of multi-agent *not* pay off? Leaning toward: small
+  tasks (< 3 files, no external research) should stay single-agent.
+- Can the planner learn from past runs? Current version is prompt-only.
+  Exploring a lightweight bandit over task decompositions.
+
+## What&apos;s next
+
+- Add a test-runner and a security-reviewer agent
+- Open-source the orchestrator skeleton with a minimal demo
+- Post a deep-dive on the state-machine design choices

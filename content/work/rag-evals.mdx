@@ -1,0 +1,73 @@
+<Callout tone="building" title="Building in public">
+This pipeline is running in production for an early design-partner but the
+full eval harness is still solidifying. Numbers and code below reflect the
+current iteration; treat as a snapshot, not a benchmark.
+</Callout>
+
+## The problem
+
+Most RAG demos look great in a single happy-path Jupyter cell. They fall over
+the moment someone asks a question just outside the demo corpus, or when
+embeddings drift after a model swap, or when a silent prompt regression ships
+on a Friday.
+
+This project fixes that third one first: **make every RAG change land with an
+evaluation that would have caught it.**
+
+## The stack
+
+- **Qdrant** as the vector store — fast hybrid search (dense + sparse) with
+  payload filtering for tenant isolation
+- **Claude Sonnet 4.6** as the generator, behind a provider-agnostic
+  interface so we can A/B against other frontier models
+- **Braintrust** as the eval harness — deterministic, versioned, and wired
+  into CI so PRs can&apos;t merge with regressions
+- **FastAPI + Pydantic** for the service, **Postgres** for audit logs
+
+## Retrieval
+
+Hybrid retrieval (BM25 + embedding cosine) followed by a small cross-encoder
+rerank. We measured:
+
+- pure dense: Recall@5 = 0.78
+- pure sparse: Recall@5 = 0.71
+- hybrid + rerank: **Recall@5 = 0.92**
+
+Worth the extra ~120ms.
+
+## Evals that actually block deploys
+
+<Timeline>
+  <Phase label="Phase 1" title="Seed the eval set">
+    280 real user questions from the design-partner corpus, each labelled with
+    ideal context passages and a faithful answer. No synthetic fluff.
+  </Phase>
+  <Phase label="Phase 2" title="Multi-axis scoring">
+    Every change scored on recall, faithfulness (LLM-as-judge with a strict
+    rubric), answer helpfulness, latency p50/p95, and cost per query.
+  </Phase>
+  <Phase label="Phase 3" title="CI gate">
+    A GitHub Action runs the suite on every PR. Any axis that regresses beyond
+    a tolerance blocks merge. Braintrust UI surfaces the deltas for review.
+  </Phase>
+  <Phase label="Phase 4" title="Shadow eval in prod">
+    A fraction of live traffic is replayed against candidate configurations
+    nightly. Drift shows up in the dashboard before users complain.
+  </Phase>
+</Timeline>
+
+## What surprised me
+
+- **Reranking matters more than embedding choice.** Swapping embedding models
+  moved Recall@5 by ±2 points; adding rerank added 14.
+- **LLM-as-judge is fine if your rubric is strict.** Loose rubrics give every
+  answer an 8/10. A rubric that looks for specific citations from the
+  retrieved context is far more discriminating.
+- **Your eval set rots.** Every month, regenerate ~10% from recent real
+  queries, or you&apos;ll optimise to an old distribution.
+
+## What&apos;s next
+
+- Public write-up with the full rubric + scoring code
+- Open-source the Qdrant + Braintrust scaffold as a template repo
+- Add adversarial eval cases (jailbreaks, prompt-injection in retrieved docs)

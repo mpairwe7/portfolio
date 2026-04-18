@@ -6,6 +6,8 @@ import { Reveal } from "@/components/motion/reveal"
 import { MotionLift } from "@/components/motion/motion-lift"
 import { projectTabs, projects } from "@/lib/content/projects"
 
+const featured = projects.filter((p) => p.featured)
+
 export function Projects() {
   return (
     <section id="work" className="py-24 relative">
@@ -15,12 +17,47 @@ export function Projects() {
             My Work
           </h2>
           <p className="text-sm font-mono text-muted-foreground uppercase tracking-widest mb-10">
-            — selected projects
+            — {featured.length} flagship · {projects.length - featured.length} shipped
           </p>
         </Reveal>
 
+        {/* Featured — flagship "building in public" */}
+        <div className="mb-16">
+          <Reveal delay={0.05}>
+            <div className="flex items-baseline gap-3 mb-6">
+              <h3 className="text-xl font-semibold font-mono uppercase tracking-wider">
+                Flagship
+              </h3>
+              <span className="text-xs font-mono text-muted-foreground">
+                building in public
+              </span>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {featured.map((project, i) => (
+              <Reveal key={project.slug} delay={i * 0.08}>
+                <MotionLift amount="subtle" className="h-full">
+                  <ProjectCard {...project} />
+                </MotionLift>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* All shipped work — filterable */}
+        <Reveal>
+          <div className="flex items-baseline gap-3 mb-6">
+            <h3 className="text-xl font-semibold font-mono uppercase tracking-wider">
+              Portfolio
+            </h3>
+            <span className="text-xs font-mono text-muted-foreground">
+              filter by category
+            </span>
+          </div>
+        </Reveal>
+
         <Tabs defaultValue="all" className="mb-12">
-          <Reveal delay={0.1}>
+          <Reveal delay={0.05}>
             <TabsList className="mb-8 flex flex-wrap h-auto gap-1 glass-surface-subtle p-1.5 rounded-full w-fit">
               {projectTabs.map(({ value, label }) => (
                 <TabsTrigger
@@ -42,9 +79,9 @@ export function Projects() {
             >
               {(value === "all"
                 ? projects
-                : projects.filter((p) => p.categories.includes(value))
+                : projects.filter((p) => p.category === value)
               ).map((project, i) => (
-                <Reveal key={project.title} delay={Math.min(i * 0.08, 0.32)}>
+                <Reveal key={project.slug} delay={Math.min(i * 0.06, 0.32)}>
                   <MotionLift amount="subtle" className="h-full">
                     <ProjectCard {...project} />
                   </MotionLift>

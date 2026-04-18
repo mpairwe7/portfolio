@@ -1,0 +1,79 @@
+<Callout tone="building" title="Building in public">
+The pipeline ships to staging with full SLSA L3 provenance today and is
+rolling out to production service-by-service. Numbers and policies below
+reflect the current state.
+</Callout>
+
+## What I wanted
+
+A deploy pipeline where the only way code reaches prod is through a chain of
+**fail-closed, cryptographically verifiable** gates. No developer shell. No
+"just this once" exceptions. If the image isn&apos;t signed, if the policy
+fails, if the SBOM shows an unaddressed critical CVE — the deploy stops and
+the board lights up red.
+
+## The seven gates
+
+<Timeline>
+  <Phase label="Gate 1" title="Hermetic build">
+    Every image is built in a sandboxed runner with no network. Build
+    provenance recorded in SLSA L3 format.
+  </Phase>
+  <Phase label="Gate 2" title="SBOM + Trivy">
+    SBOM generated at build time (Syft) and attached as an OCI artifact.
+    Trivy scans for CVEs and license issues; critical findings fail the gate.
+  </Phase>
+  <Phase label="Gate 3" title="Cosign signing">
+    Images signed with cosign keyless (OIDC) via Sigstore. The signature
+    covers both the image and the SBOM.
+  </Phase>
+  <Phase label="Gate 4" title="OPA policy eval">
+    ArgoCD sync hook runs an OPA Gatekeeper bundle: allow-listed registries,
+    no `:latest`, no privileged containers, required labels, CPU/memory
+    requests set.
+  </Phase>
+  <Phase label="Gate 5" title="Kyverno admission">
+    Kyverno enforces Pod Security Standards at admission: read-only root
+    filesystem, non-root UID, seccomp profile set.
+  </Phase>
+  <Phase label="Gate 6" title="Progressive rollout">
+    Argo Rollouts does a canary with automated analysis against Prometheus
+    SLOs. Any regression triggers rollback.
+  </Phase>
+  <Phase label="Gate 7" title="Runtime detection">
+    Falco rules catch anomalous syscalls post-deploy; critical alerts fire to
+    on-call and auto-revert.
+  </Phase>
+</Timeline>
+
+## How it feels for developers
+
+- Push to `main` → image builds → artifacts land in the registry
+- A Renovate-style bot opens a PR against the environment repo
+- The PR runs the full gate suite in preview
+- Reviewer approves → ArgoCD syncs → canary rolls out over 20 minutes
+- If anything goes wrong, auto-rollback fires within 90 seconds
+
+Developers see a single PR status check. Security sees a full chain of custody.
+
+## Policy highlights (OPA)
+
+```rego
+package k8s.image
+
+deny[msg] {
+  input.review.object.spec.containers[_].image == regex.match(".*:latest$", _)
+  msg := "Image tags must be immutable (no :latest)"
+}
+
+deny[msg] {
+  not startswith(input.review.object.spec.containers[_].image, "registry.aibos.internal/")
+  msg := "Images must come from the internal registry"
+}
+```
+
+## What&apos;s next
+
+- Finish the Kyverno policy library (34 rules shipped, aiming for 60)
+- Write up the Argo Rollouts + Prometheus SLO analysis template
+- Publish the provenance-viewer UI so non-SREs can audit deploys

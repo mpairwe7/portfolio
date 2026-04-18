@@ -1,26 +1,51 @@
 import type { LucideIcon } from "lucide-react"
 
 export type ProjectCategory =
+  | "agentic"
+  | "devsecops"
+  | "mlops"
   | "cloud"
   | "iot"
-  | "ml"
   | "mobile"
   | "web"
   | "desktop"
 
+export type ProjectStatus = "shipped" | "in-progress" | "archived"
+
 export type Project = {
+  slug: string
   title: string
-  description: string
+  summary: string
   image: string
-  tags: string[]
-  categories: ProjectCategory[]
-  link?: string
-  github?: string
+  category: ProjectCategory
+  stack: string[]
+  metrics?: { label: string; value: string }[]
+  liveUrl?: string
+  repoUrl?: string
+  status: ProjectStatus
+  featured: boolean
+  caseStudySlug?: string
 }
 
 export type ProjectTab = {
   value: "all" | ProjectCategory
   label: string
+}
+
+export type CaseStudy = {
+  slug: string
+  title: string
+  subtitle: string
+  summary: string
+  coverImage: string
+  category: ProjectCategory
+  stack: string[]
+  metrics?: { label: string; value: string }[]
+  status: ProjectStatus
+  liveUrl?: string
+  repoUrl?: string
+  publishedAt: string
+  readingMinutes: number
 }
 
 export type SkillBar = {
