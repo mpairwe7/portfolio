@@ -1,5 +1,6 @@
 import { Nav } from "./(home)/_sections/nav"
 import { Hero } from "./(home)/_sections/hero"
+import { Ionatec } from "./(home)/_sections/ionatec"
 import { Projects } from "./(home)/_sections/projects"
 import { Skills } from "./(home)/_sections/skills"
 import { Experience } from "./(home)/_sections/experience"
@@ -25,6 +26,7 @@ export default function Portfolio() {
       >
         <Nav />
         <Hero />
+        <Ionatec />
         <Projects />
         <Skills />
         <Experience />

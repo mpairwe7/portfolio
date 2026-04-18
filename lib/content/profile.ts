@@ -1,6 +1,7 @@
 export const profile = {
   fullName: "Mpairwe Lauben",
   shortName: "ML",
+  title: "DevSecOps · ML · Agentic AI Engineer · Co-founder",
   dob: "22 October 1995",
   email: "mpairwelauben75@gmail.com",
   phone: "+256 773 336 896",
@@ -13,23 +14,24 @@ export const profile = {
   githubUrl: "https://github.com/mpairweLandwind",
   githubHandle: "github.com/mpairweLandwind",
   twitterUrl: "https://twitter.com/mpairwelauben/",
-  greeting: "👋 Hello, I'm",
+  greeting: "// Portfolio · 2026",
   heroTagline:
-    "A driven Software Engineering student at Makerere University with 5+ years of hands-on experience in DevOps, AI/ML, full-stack, and mobile development — based in Kampala, Uganda.",
-  footerTagline: "Software Engineer · DevOps · AI/ML · Kampala, Uganda",
+    "I build secure cloud platforms, production ML systems, and agentic AI tooling. DevSecOps at AIBOS Uganda by day, co-founding Iona Institute of Technology in Kampala by night — and shipping in public across both.",
+  footerTagline:
+    "DevSecOps · ML · Agentic AI · Ionatec co-founder · Kampala, Uganda",
   aboutParagraphs: [
-    "I am **Mpairwe Lauben**, a passionate software engineer from Kampala, Uganda, specialising in DevOps, AI/ML, full-stack development, and mobile engineering.",
-    "With 5+ years of professional experience across startups, enterprises, and academic institutions, I thrive on building reliable, scalable, and impactful technology solutions. I'm equally comfortable architecting cloud infrastructure, training ML models, or shipping production-ready mobile apps.",
-    "I'm a reliable and collaborative team player with a strong work ethic and a genuine passion for continuous learning, open-source contributions, and mentoring junior developers.",
+    "I am **Mpairwe Lauben**, a DevSecOps engineer and applied ML practitioner based in Kampala, Uganda, and co-founder of **Iona Institute of Technology** (ionatec.com) — where we ship production AI for East African operators.",
+    "By day I run CI/CD, cloud, and security posture at **AIBOS Uganda**. Outside that I train models, build agentic systems on the Claude Agent SDK and LangGraph, and instrument MCP servers that expose tools to LLMs. I&apos;m equally comfortable hardening a Kubernetes cluster, evaluating a RAG pipeline, or shipping a Flutter release.",
+    "I collaborate well, document thoroughly, and take security posture seriously. I mentor junior engineers, write in public about what I learn, and contribute upstream when the work warrants it.",
   ],
   contactBlurb:
-    "Have a project, opportunity, or just want to connect? I'm always open to discussing new ideas and collaborations in DevOps, AI/ML, cloud architecture, or full-stack development. Let's build something impactful together.",
+    "Hiring for a DevSecOps, ML, or agentic-engineering role? Commissioning a secure platform or a production AI system? Advising a startup? I reply to every sincere message within 48 hours.",
   heroStats: [
-    { label: "Years Experience", value: "5+" },
-    { label: "Projects Delivered", value: "20+" },
-    { label: "Technologies", value: "30+" },
+    { label: "Years shipping", value: "6+" },
+    { label: "Flagship builds", value: "16" },
+    { label: "Live ventures", value: "2" },
   ],
-  availability: "Available for work",
-  locationBadge: "📍 Kampala, Uganda",
+  availability: "Available for DevSecOps / ML / agentic roles",
+  locationBadge: "📍 Kampala · UTC+3",
   languages: ["English (Fluent)", "German (Basic)"],
 } as const

@@ -5,32 +5,124 @@ import { GeistMono } from "geist/font/mono"
 import { ThemeProvider } from "@/components/theme-provider"
 import { NoiseLayer } from "@/components/bg/noise-layer"
 import { Toaster } from "sonner"
+import { profile } from "@/lib/content/profile"
+import { ionatec } from "@/lib/content/ionatec"
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://mpairwe.dev"
 
 export const metadata = {
-  title: "Mpairwe Lauben | DevOps & Software Engineer",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${profile.fullName} · DevSecOps · ML · Agentic AI Engineer`,
+    template: `%s · ${profile.fullName}`,
+  },
   description:
-    "Portfolio of Mpairwe Lauben — DevOps Engineer, AI/ML Engineer, and Full Stack Developer based in Kampala, Uganda. Specialising in cloud infrastructure, machine learning, mobile, and web development.",
+    "DevSecOps engineer at AIBOS Uganda, co-founder of Ionatec (Iona Institute of Technology), and applied ML / agentic AI practitioner shipping production systems from Kampala.",
   keywords: [
     "Mpairwe Lauben",
-    "DevOps Engineer Uganda",
-    "Software Engineer Kampala",
-    "AI ML Engineer",
-    "Full Stack Developer",
-    "Open Source and Enterprise FrameWork Developer",
-    "Flutter Developer",
-    "React Native Developer",
-    "Spring Boot",
+    "DevSecOps Engineer",
+    "ML Engineer",
+    "Agentic AI Engineer",
+    "LLM Agents",
+    "MCP Server",
+    "Claude Agent SDK",
+    "LangGraph",
+    "Ionatec",
+    "Iona Institute of Technology",
+    "AIBOS Uganda",
+    "Kampala",
+    "Kubernetes Security",
+    "Supply Chain Security",
+    "SLSA Sigstore",
+    "RAG pipelines",
+    "Vector databases",
+    "Terraform",
+    "Vercel",
+  ],
+  authors: [{ name: profile.fullName, url: SITE_URL }],
+  creator: profile.fullName,
+  openGraph: {
+    title: `${profile.fullName} · DevSecOps · ML · Agentic AI Engineer`,
+    description:
+      "DevSecOps @ AIBOS · Co-founder @ Ionatec · Applied ML & agentic AI · Kampala, Uganda.",
+    url: SITE_URL,
+    siteName: `${profile.fullName} — Portfolio`,
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.fullName} · DevSecOps · ML · Agentic AI`,
+    description:
+      "DevSecOps @ AIBOS · Co-founder @ Ionatec · Kampala.",
+    creator: "@mpairwelauben",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+}
+
+const jsonLdPerson = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.fullName,
+  url: SITE_URL,
+  image: `${SITE_URL}/images/lauben.jpg`,
+  jobTitle: "DevSecOps Engineer · ML Engineer · Agentic AI Engineer",
+  worksFor: [
+    {
+      "@type": "Organization",
+      name: "AIBOS Uganda",
+    },
+    {
+      "@type": "Organization",
+      name: ionatec.name,
+      url: ionatec.url,
+    },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Kampala",
+    addressCountry: "UG",
+  },
+  email: `mailto:${profile.email}`,
+  sameAs: [
+    profile.linkedinUrl,
+    profile.githubUrl,
+    profile.twitterUrl,
+    ionatec.url,
+  ],
+  knowsAbout: [
+    "DevSecOps",
+    "Cloud Security",
+    "Supply Chain Security",
+    "Machine Learning",
+    "LLM Agents",
+    "Model Context Protocol",
+    "Retrieval-Augmented Generation",
     "Kubernetes",
     "Terraform",
   ],
-  authors: [{ name: "Mpairwe Lauben", url: "https://mpairweportfolio.vercel.app" }],
-  openGraph: {
-    title: "Mpairwe Lauben | DevOps & Software Engineer",
-    description:
-      "DevOps, Enterprise, AI/ML, Full Stack & Mobile Engineer based in Kampala, Uganda.",
-    url: "https://mpairweportfolio.vercel.app",
-    siteName: "Mpairwe Lauben Portfolio",
-    type: "website",
+}
+
+const jsonLdOrg = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: ionatec.name,
+  alternateName: ionatec.shortName,
+  url: ionatec.url,
+  description: ionatec.mission,
+  founder: {
+    "@type": "Person",
+    name: profile.fullName,
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Kampala",
+    addressCountry: "UG",
   },
 }
 
@@ -45,6 +137,16 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
