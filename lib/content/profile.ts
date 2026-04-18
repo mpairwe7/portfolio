@@ -1,0 +1,35 @@
+export const profile = {
+  fullName: "Mpairwe Lauben",
+  shortName: "ML",
+  dob: "22 October 1995",
+  email: "mpairwelauben75@gmail.com",
+  phone: "+256 773 336 896",
+  phoneTel: "+256773336896",
+  location: "Kampala, Uganda",
+  nationality: "Ugandan",
+  resumeUrl: "/images/resume.pdf",
+  linkedinUrl: "https://www.linkedin.com/in/mpairwe-lauben-3a1461344",
+  linkedinHandle: "mpairwe-lauben-3a1461344",
+  githubUrl: "https://github.com/mpairweLandwind",
+  githubHandle: "github.com/mpairweLandwind",
+  twitterUrl: "https://twitter.com/mpairwelauben/",
+  greeting: "👋 Hello, I'm",
+  heroTagline:
+    "A driven Software Engineering student at Makerere University with 5+ years of hands-on experience in DevOps, AI/ML, full-stack, and mobile development — based in Kampala, Uganda.",
+  footerTagline: "Software Engineer · DevOps · AI/ML · Kampala, Uganda",
+  aboutParagraphs: [
+    "I am **Mpairwe Lauben**, a passionate software engineer from Kampala, Uganda, specialising in DevOps, AI/ML, full-stack development, and mobile engineering.",
+    "With 5+ years of professional experience across startups, enterprises, and academic institutions, I thrive on building reliable, scalable, and impactful technology solutions. I'm equally comfortable architecting cloud infrastructure, training ML models, or shipping production-ready mobile apps.",
+    "I'm a reliable and collaborative team player with a strong work ethic and a genuine passion for continuous learning, open-source contributions, and mentoring junior developers.",
+  ],
+  contactBlurb:
+    "Have a project, opportunity, or just want to connect? I'm always open to discussing new ideas and collaborations in DevOps, AI/ML, cloud architecture, or full-stack development. Let's build something impactful together.",
+  heroStats: [
+    { label: "Years Experience", value: "5+" },
+    { label: "Projects Delivered", value: "20+" },
+    { label: "Technologies", value: "30+" },
+  ],
+  availability: "Available for work",
+  locationBadge: "📍 Kampala, Uganda",
+  languages: ["English (Fluent)", "German (Basic)"],
+} as const
