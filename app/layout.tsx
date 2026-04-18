@@ -46,6 +46,7 @@ export const metadata = {
   ],
   authors: [{ name: profile.fullName, url: SITE_URL }],
   creator: profile.fullName,
+  alternates: { canonical: "/" },
   openGraph: {
     title: `${profile.fullName} · DevSecOps · ML · Agentic AI Engineer`,
     description:

@@ -31,9 +31,9 @@ export function Footer() {
                       href.startsWith("http") ? "noopener noreferrer" : undefined
                     }
                     aria-label={label}
-                    className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-full p-2.5 inline-block glass-surface-subtle hover:border-primary/30"
+                    className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-full min-w-11 min-h-11 inline-flex items-center justify-center glass-surface-subtle hover:border-primary/30"
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-5 w-5" />
                   </a>
                 </li>
               ))}

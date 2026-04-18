@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
-import { Menu, Moon, Sun, X } from "lucide-react"
+import { Menu, Moon, Search, Sun, X } from "lucide-react"
 import { navItems } from "@/lib/content/nav"
 import { profile } from "@/lib/content/profile"
+import { openCommandPalette } from "@/lib/command-events"
 import {
   scrollToSection,
   scrollToTop,
@@ -70,6 +71,15 @@ export function Nav() {
         </ul>
 
         <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={openCommandPalette}
+            aria-label="Open command palette"
+            className="relative"
+          >
+            <Search className="h-5 w-5" />
+          </Button>
           {mounted && (
             <Button
               variant="ghost"

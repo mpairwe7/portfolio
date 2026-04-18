@@ -58,17 +58,19 @@ export function Projects() {
 
         <Tabs defaultValue="all" className="mb-12">
           <Reveal delay={0.05}>
-            <TabsList className="mb-8 flex flex-wrap h-auto gap-1 glass-surface-subtle p-1.5 rounded-full w-fit">
-              {projectTabs.map(({ value, label }) => (
-                <TabsTrigger
-                  key={value}
-                  value={value}
-                  className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm text-xs font-mono uppercase tracking-wider px-4"
-                >
-                  {label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
+            <div className="mb-8 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <TabsList className="inline-flex h-auto gap-1 glass-surface-subtle p-1.5 rounded-full max-w-full">
+                {projectTabs.map(({ value, label }) => (
+                  <TabsTrigger
+                    key={value}
+                    value={value}
+                    className="rounded-full data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm text-xs font-mono uppercase tracking-wider px-4 whitespace-nowrap"
+                  >
+                    {label}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </div>
           </Reveal>
 
           {projectTabs.map(({ value }) => (

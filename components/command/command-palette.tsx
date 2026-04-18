@@ -31,6 +31,7 @@ import {
   Wrench,
 } from "lucide-react"
 import { toast } from "sonner"
+import { OPEN_COMMAND_PALETTE } from "@/lib/command-events"
 import { navItems } from "@/lib/content/nav"
 import { profile } from "@/lib/content/profile"
 import { ionatec } from "@/lib/content/ionatec"
@@ -59,8 +60,13 @@ export function CommandPalette() {
         setOpen((o) => !o)
       }
     }
+    const handleOpenEvent = () => setOpen(true)
     document.addEventListener("keydown", handleKey)
-    return () => document.removeEventListener("keydown", handleKey)
+    window.addEventListener(OPEN_COMMAND_PALETTE, handleOpenEvent)
+    return () => {
+      document.removeEventListener("keydown", handleKey)
+      window.removeEventListener(OPEN_COMMAND_PALETTE, handleOpenEvent)
+    }
   }, [])
 
   const run = useCallback((fn: () => void) => {

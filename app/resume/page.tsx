@@ -12,6 +12,7 @@ import { ionatec } from "@/lib/content/ionatec"
 export const metadata: Metadata = {
   title: "Resume",
   description: `Printable resume for ${profile.fullName} — DevSecOps, ML, and Agentic AI Engineer.`,
+  alternates: { canonical: "/resume" },
 }
 
 const featured = projects.filter((p) => p.featured)
