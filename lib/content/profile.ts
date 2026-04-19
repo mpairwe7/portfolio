@@ -8,7 +8,7 @@ export const profile = {
   phoneTel: "+256773336896",
   location: "Kampala, Uganda",
   nationality: "Ugandan",
-  resumeUrl: "/images/resume.pdf",
+  resumeUrl: "/mpairwe-lauben-resume.pdf",
   linkedinUrl: "https://www.linkedin.com/in/mpairwe-lauben-3a1461344",
   linkedinHandle: "mpairwe-lauben-3a1461344",
   githubUrl: "https://github.com/mpairweLandwind",
@@ -21,7 +21,7 @@ export const profile = {
     "DevSecOps · ML · Agentic AI · Ionatec co-founder · Kampala, Uganda",
   aboutParagraphs: [
     "I am **Mpairwe Lauben**, a DevSecOps engineer and applied ML practitioner based in Kampala, Uganda, and co-founder of **Iona Institute of Technology** (ionatec.com) — where we ship production AI for East African operators.",
-    "By day I run CI/CD, cloud, and security posture at **AIBOS Uganda**. Outside that I train models, build agentic systems on the Claude Agent SDK and LangGraph, and instrument MCP servers that expose tools to LLMs. I&apos;m equally comfortable hardening a Kubernetes cluster, evaluating a RAG pipeline, or shipping a Flutter release.",
+    "By day I run CI/CD, cloud, and security posture at **AIBOS Uganda**. Outside that I train models, build agentic systems on the Claude Agent SDK and LangGraph, and instrument MCP servers that expose tools to LLMs. I'm equally comfortable hardening a Kubernetes cluster, evaluating a RAG pipeline, or shipping a Flutter release.",
     "I collaborate well, document thoroughly, and take security posture seriously. I mentor junior engineers, write in public about what I learn, and contribute upstream when the work warrants it.",
   ],
   contactBlurb:

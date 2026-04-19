@@ -39,21 +39,24 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.15}>
-            <p
-              className="text-lg mb-4 leading-relaxed"
-              dangerouslySetInnerHTML={{
-                __html: profile.aboutParagraphs[0].replace(
-                  /\*\*(.+?)\*\*/g,
-                  "<strong class='text-foreground'>$1</strong>"
-                ),
-              }}
-            />
-            <p className="text-base mb-4 text-muted-foreground leading-relaxed">
-              {profile.aboutParagraphs[1]}
-            </p>
-            <p className="text-base mb-8 text-muted-foreground leading-relaxed">
-              {profile.aboutParagraphs[2]}
-            </p>
+            {profile.aboutParagraphs.map((p, i) => (
+              <p
+                key={i}
+                className={
+                  i === 0
+                    ? "text-lg mb-4 leading-relaxed"
+                    : i === profile.aboutParagraphs.length - 1
+                      ? "text-base mb-8 text-muted-foreground leading-relaxed"
+                      : "text-base mb-4 text-muted-foreground leading-relaxed"
+                }
+                dangerouslySetInnerHTML={{
+                  __html: p.replace(
+                    /\*\*(.+?)\*\*/g,
+                    "<strong class='text-foreground'>$1</strong>"
+                  ),
+                }}
+              />
+            ))}
 
             <dl className="grid grid-cols-2 gap-4 mb-8 text-sm">
               {contactAboutFields.map(({ label, value }) => (

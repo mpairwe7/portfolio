@@ -202,11 +202,329 @@
            px-4 py-2 rounded-md text-sm font-semibold shadow-lg;
   }
 
-  /* ── Print styles — /resume page ─────────────────────────── */
+  /* ── /resume — two-column document, screen + print ─────────── */
+  /* System-only fonts here — guarantees no FOUT/notdef boxes when
+     headless Chrome captures the PDF before web fonts load. */
+  .resume-root {
+    --ink: #1b1a17;
+    --ink-soft: #555247;
+    --side-bg: #1a1816;
+    --side-ink: #e8e4dd;
+    --side-muted: #8a8378;
+    --rule: #d5d1c9;
+    --accent: #c47a10;
+    --serif: "Helvetica Neue", "Liberation Sans", "Arial", sans-serif;
+    --mono: "DejaVu Sans Mono", "Liberation Mono", "Menlo", "Consolas", monospace;
+    color: var(--ink);
+    background: #fff;
+    font-family: var(--serif);
+  }
+  .resume-root * { font-family: inherit; }
+  .dark .resume-root {
+    background: hsl(24 6% 8%);
+  }
+  .resume-toolbar {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .resume-doc {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto 3rem;
+    background: #fff;
+    color: var(--ink);
+    box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.5);
+  }
+  @media (max-width: 760px) {
+    .resume-doc { grid-template-columns: 1fr; }
+  }
+
+  /* Sidebar */
+  .resume-side {
+    background: var(--side-bg);
+    color: var(--side-ink);
+    padding: 2.25rem 1.5rem;
+  }
+  .resume-avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 0 auto 1.25rem;
+    border: 3px solid rgba(255, 255, 255, 0.12);
+  }
+  .resume-name p {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    text-align: center;
+    color: #fff;
+  }
+  .resume-title {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-align: center;
+    margin: 0.5rem 0 1.75rem;
+  }
+  .resume-side-section {
+    margin-bottom: 1.5rem;
+  }
+  .resume-side-h {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.65rem;
+  }
+  .resume-about {
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--side-ink);
+  }
+  .resume-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .resume-skills li {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    color: var(--side-ink);
+    padding: 0.18rem 0;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.06);
+  }
+  .resume-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .resume-links li {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    font-size: 0.7rem;
+    color: var(--side-ink);
+  }
+  .resume-link-icon {
+    width: 0.9rem;
+    height: 0.9rem;
+    margin-top: 0.15rem;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .resume-link-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    color: var(--side-muted);
+    text-transform: uppercase;
+  }
+  .resume-links a {
+    color: var(--side-ink);
+    word-break: break-all;
+  }
+  .resume-plain li {
+    font-size: 0.75rem;
+    padding: 0.15rem 0;
+    color: var(--side-ink);
+  }
+  .resume-personal > div {
+    margin-bottom: 0.5rem;
+  }
+  .resume-personal dt {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    color: var(--side-muted);
+    text-transform: uppercase;
+  }
+  .resume-personal dd {
+    font-size: 0.75rem;
+    color: var(--side-ink);
+  }
+  .resume-refs li {
+    margin-bottom: 0.55rem;
+  }
+  .resume-ref-name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  .resume-ref-role {
+    font-size: 0.65rem;
+    color: var(--accent);
+    margin-top: 0.1rem;
+  }
+  .resume-ref-inst {
+    font-size: 0.62rem;
+    color: var(--side-muted);
+    line-height: 1.35;
+  }
+
+  /* Main — uses standard reading-body sizes (~14px / 11pt baseline) */
+  .resume-main {
+    padding: 2.5rem 2.25rem 2.75rem;
+    background: #fff;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .resume-header {
+    margin-bottom: 1.75rem;
+  }
+  .resume-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .resume-contact li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .resume-contact a {
+    color: var(--ink);
+  }
+  .resume-h-icon {
+    width: 1rem;
+    height: 1rem;
+    color: var(--accent);
+  }
+  .resume-main-section {
+    margin-bottom: 2rem;
+  }
+  .resume-main-h {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+  .resume-main-hr {
+    display: block;
+    height: 2px;
+    width: 36px;
+    background: var(--accent);
+    margin-bottom: 1.1rem;
+  }
+  .resume-exp {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.6rem;
+    break-inside: avoid;
+  }
+  .resume-exp-left {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .resume-exp-company {
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 0.2rem;
+  }
+  .resume-exp-loc {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+  }
+  .resume-exp-period {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin-top: 0.4rem;
+  }
+  .resume-exp-role {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .resume-exp-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 0.6rem;
+  }
+  .resume-exp-bullets li {
+    position: relative;
+    padding-left: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .resume-exp-bullets li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .resume-exp-tags {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 0.4rem;
+  }
+  .resume-certs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .resume-certs li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+  }
+  .resume-cert-status {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    flex-shrink: 0;
+    min-width: 70px;
+  }
+  .resume-cert-name {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .resume-cert-issuer {
+    color: var(--ink-soft);
+  }
+
+  /* Print — preserve two-column layout + background colors */
   @media print {
+    @page {
+      size: A4;
+      margin: 0;
+    }
     html, body {
       background: #fff !important;
-      color: #111 !important;
+      color: var(--ink) !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
     body::before,
     nav,
@@ -215,20 +533,56 @@
     .no-print {
       display: none !important;
     }
-    .resume-page {
-      padding: 0 !important;
+    .resume-root {
+      background: #fff !important;
     }
-    .resume-section {
-      break-inside: avoid;
+    .resume-toolbar { display: none !important; }
+    .resume-doc {
+      box-shadow: none !important;
+      margin: 0 !important;
+      max-width: none !important;
+      grid-template-columns: 32% 1fr !important;
     }
-    a {
-      color: #111 !important;
-      text-decoration: none !important;
+    .resume-side,
+    .resume-side *,
+    .resume-side a {
+      color: var(--side-ink) !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
-    .resume-page :is(h1, h2, h3) { color: #111 !important; }
-    .resume-page .text-muted-foreground { color: #444 !important; }
-    .resume-page .text-primary { color: #b45309 !important; }
-    .resume-page .border-border { border-color: #ddd !important; }
+    .resume-side { background: var(--side-bg) !important; }
+    .resume-side-h,
+    .resume-title,
+    .resume-exp-period,
+    .resume-cert-status,
+    .resume-ref-role,
+    .resume-h-icon,
+    .resume-link-icon,
+    .resume-exp-bullets li::before {
+      color: var(--accent) !important;
+      background: transparent !important;
+    }
+    /* Skia/PDF renders some letter-spacing values as rectangles when the font
+       is not embedded — soften spacing in print to keep text crisp. */
+    .resume-side-h,
+    .resume-title,
+    .resume-exp-period,
+    .resume-cert-status,
+    .resume-link-label,
+    .resume-personal dt {
+      letter-spacing: 0.06em !important;
+    }
+    .resume-skills li {
+      letter-spacing: 0.04em !important;
+    }
+    .resume-main-hr { background: var(--accent) !important; }
+    .resume-main-h,
+    .resume-exp-role,
+    .resume-exp-company,
+    .resume-cert-name,
+    .resume-contact a { color: var(--ink) !important; }
+    .resume-exp { break-inside: avoid; }
+    a { text-decoration: none !important; }
   }
 
   /* ── prefers-reduced-motion ──────────────────────────────── */
