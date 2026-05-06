@@ -3,5 +3,6 @@ export const typingRoles = [
   "ML Engineer",
   "Agentic AI Engineer",
   "Ionatec Co-founder",
+  "Sauti Health Partner",
   "AIBOS Engineer",
 ] as const

@@ -63,7 +63,7 @@ export default function OGImage() {
             marginBottom: 56,
           }}
         >
-          DevSecOps · ML · Agentic AI Engineer · Ionatec Co-founder · AIBOS
+          DevSecOps · ML · Agentic AI · Ionatec Co-founder · Sauti Health Partner
         </div>
         <div
           style={{

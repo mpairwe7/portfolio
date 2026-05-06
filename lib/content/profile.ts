@@ -1,7 +1,8 @@
 export const profile = {
   fullName: "Mpairwe Lauben",
   shortName: "ML",
-  title: "DevSecOps · ML · Agentic AI Engineer · Co-founder",
+  title:
+    "DevSecOps · ML · Agentic AI Engineer · Co-founder · Sauti Health partner",
   dob: "22 October 1995",
   email: "mpairwelauben75@gmail.com",
   phone: "+256 773 336 896",
@@ -16,20 +17,21 @@ export const profile = {
   twitterUrl: "https://twitter.com/mpairwelauben/",
   greeting: "// Portfolio · 2026",
   heroTagline:
-    "I build secure cloud platforms, production ML systems, and agentic AI tooling. DevSecOps at AIBOS Uganda by day, co-founding Iona Institute of Technology in Kampala by night — and shipping in public across both.",
+    "I build secure cloud platforms, production ML systems, and agentic AI tooling. DevSecOps at AIBOS Uganda by day, co-founding Iona Institute of Technology in Kampala by night, and partnering with Sauti Health on emergency-dispatch infrastructure for sub-Saharan Africa — shipping in public across all three.",
   footerTagline:
-    "DevSecOps · ML · Agentic AI · Ionatec co-founder · Kampala, Uganda",
+    "DevSecOps · ML · Agentic AI · Ionatec co-founder · Sauti Health partner · Kampala, Uganda",
   aboutParagraphs: [
     "I am **Mpairwe Lauben**, a DevSecOps engineer and applied ML practitioner based in Kampala, Uganda, and co-founder of **Iona Institute of Technology** (ionatec.com) — where we ship production AI for East African operators.",
+    "I also work as a developer in partnership with **Sauti Health** (sautihealth.com) on the engineering behind their pre-hospital emergency dispatch platform — USSD-first, offline-capable, and built for the realities of low-resource settings across sub-Saharan Africa.",
     "By day I run CI/CD, cloud, and security posture at **AIBOS Uganda**. Outside that I train models, build agentic systems on the Claude Agent SDK and LangGraph, and instrument MCP servers that expose tools to LLMs. I'm equally comfortable hardening a Kubernetes cluster, evaluating a RAG pipeline, or shipping a Flutter release.",
     "I collaborate well, document thoroughly, and take security posture seriously. I mentor junior engineers, write in public about what I learn, and contribute upstream when the work warrants it.",
   ],
   contactBlurb:
-    "Hiring for a DevSecOps, ML, or agentic-engineering role? Commissioning a secure platform or a production AI system? Advising a startup? I reply to every sincere message within 48 hours.",
+    "Hiring for a DevSecOps, ML, or agentic-engineering role? Commissioning a secure platform or a production AI system? Looking for an engineering partner on a mission-driven build? I reply to every sincere message within 48 hours.",
   heroStats: [
     { label: "Years shipping", value: "6+" },
     { label: "Flagship builds", value: "16" },
-    { label: "Live ventures", value: "2" },
+    { label: "Active partnerships", value: "3" },
   ],
   availability: "Available for DevSecOps / ML / agentic roles",
   locationBadge: "📍 Kampala · UTC+3",

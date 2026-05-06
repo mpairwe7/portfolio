@@ -9,6 +9,7 @@ import { skillStacks } from "@/lib/content/skills"
 import { certifications } from "@/lib/content/certifications"
 import { references } from "@/lib/content/references"
 import { ionatec } from "@/lib/content/ionatec"
+import { sauti } from "@/lib/content/sauti"
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -76,8 +77,10 @@ export default function ResumePage() {
           <SideSection title="About">
             <p className="resume-about">
               DevSecOps engineer and applied ML practitioner. Co-founder of
-              Iona Institute of Technology (ionatec.com). By day, CI/CD, cloud,
-              and security posture at AIBOS Uganda. Outside: training models,
+              Iona Institute of Technology (ionatec.com) and engineering partner
+              at Sauti Health (sautihealth.com), building emergency-dispatch
+              infrastructure for sub-Saharan Africa. By day, CI/CD, cloud, and
+              security posture at AIBOS Uganda. Outside: training models,
               building agentic systems on the Claude Agent SDK and LangGraph,
               and instrumenting MCP servers that expose tools to LLMs.
             </p>
@@ -112,6 +115,13 @@ export default function ResumePage() {
                 <span>
                   <span className="resume-link-label">Ionatec</span>
                   <a href={ionatec.url}>{ionatec.url.replace(/^https?:\/\//, "")}</a>
+                </span>
+              </li>
+              <li>
+                <Globe className="resume-link-icon" aria-hidden="true" />
+                <span>
+                  <span className="resume-link-label">Sauti Health</span>
+                  <a href={sauti.url}>{sauti.url.replace(/^https?:\/\//, "")}</a>
                 </span>
               </li>
             </ul>

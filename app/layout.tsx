@@ -11,6 +11,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Toaster } from "sonner"
 import { profile } from "@/lib/content/profile"
 import { ionatec } from "@/lib/content/ionatec"
+import { sauti } from "@/lib/content/sauti"
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://mpairwe.dev"
@@ -22,7 +23,7 @@ export const metadata = {
     template: `%s · ${profile.fullName}`,
   },
   description:
-    "DevSecOps engineer at AIBOS Uganda, co-founder of Ionatec (Iona Institute of Technology), and applied ML / agentic AI practitioner shipping production systems from Kampala.",
+    "DevSecOps engineer at AIBOS Uganda, co-founder of Ionatec (Iona Institute of Technology), engineering partner at Sauti Health, and applied ML / agentic AI practitioner shipping production systems from Kampala.",
   keywords: [
     "Mpairwe Lauben",
     "DevSecOps Engineer",
@@ -34,6 +35,11 @@ export const metadata = {
     "LangGraph",
     "Ionatec",
     "Iona Institute of Technology",
+    "Sauti Health",
+    "Emergency Dispatch",
+    "USSD",
+    "Offline-first",
+    "Mobile Money",
     "AIBOS Uganda",
     "Kampala",
     "Kubernetes Security",
@@ -50,7 +56,7 @@ export const metadata = {
   openGraph: {
     title: `${profile.fullName} · DevSecOps · ML · Agentic AI Engineer`,
     description:
-      "DevSecOps @ AIBOS · Co-founder @ Ionatec · Applied ML & agentic AI · Kampala, Uganda.",
+      "DevSecOps @ AIBOS · Co-founder @ Ionatec · Engineering partner @ Sauti Health · Applied ML & agentic AI · Kampala, Uganda.",
     url: SITE_URL,
     siteName: `${profile.fullName} — Portfolio`,
     type: "website",
@@ -60,7 +66,7 @@ export const metadata = {
     card: "summary_large_image",
     title: `${profile.fullName} · DevSecOps · ML · Agentic AI`,
     description:
-      "DevSecOps @ AIBOS · Co-founder @ Ionatec · Kampala.",
+      "DevSecOps @ AIBOS · Co-founder @ Ionatec · Partner @ Sauti Health · Kampala.",
     creator: "@mpairwelauben",
   },
   robots: {
@@ -76,7 +82,8 @@ const jsonLdPerson = {
   name: profile.fullName,
   url: SITE_URL,
   image: `${SITE_URL}/images/lauben.jpg`,
-  jobTitle: "DevSecOps Engineer · ML Engineer · Agentic AI Engineer",
+  jobTitle:
+    "DevSecOps Engineer · ML Engineer · Agentic AI Engineer · Sauti Health Partner",
   worksFor: [
     {
       "@type": "Organization",
@@ -86,6 +93,11 @@ const jsonLdPerson = {
       "@type": "Organization",
       name: ionatec.name,
       url: ionatec.url,
+    },
+    {
+      "@type": "Organization",
+      name: sauti.name,
+      url: sauti.url,
     },
   ],
   address: {
@@ -99,6 +111,7 @@ const jsonLdPerson = {
     profile.githubUrl,
     profile.twitterUrl,
     ionatec.url,
+    sauti.url,
   ],
   knowsAbout: [
     "DevSecOps",
@@ -110,6 +123,10 @@ const jsonLdPerson = {
     "Retrieval-Augmented Generation",
     "Kubernetes",
     "Terraform",
+    "Emergency Dispatch Systems",
+    "USSD / IVR Platforms",
+    "Offline-first Mobile Architecture",
+    "Mobile Money Integrations",
   ],
 }
 

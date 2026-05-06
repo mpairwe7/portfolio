@@ -21,6 +21,7 @@ import {
   FileText,
   Github,
   GraduationCap,
+  HeartPulse,
   Home,
   Layers,
   Linkedin,
@@ -35,12 +36,14 @@ import { OPEN_COMMAND_PALETTE } from "@/lib/command-events"
 import { navItems } from "@/lib/content/nav"
 import { profile } from "@/lib/content/profile"
 import { ionatec } from "@/lib/content/ionatec"
+import { sauti } from "@/lib/content/sauti"
 import { projects } from "@/lib/content/projects"
 import { caseStudies, caseStudySlugs } from "@/lib/content/work"
 
 const NAV_ICON = {
   home: Home,
   ionatec: Building2,
+  sauti: HeartPulse,
   work: Briefcase,
   skills: Layers,
   experience: Wrench,
@@ -153,6 +156,14 @@ export function CommandPalette() {
             >
               <Building2 className="mr-2 h-4 w-4" />
               Visit {ionatec.shortName}
+              <ArrowUpRight className="ml-auto h-3.5 w-3.5 text-muted-foreground" />
+            </CommandItem>
+            <CommandItem
+              value="action visit sauti health"
+              onSelect={() => run(() => window.open(sauti.url, "_blank"))}
+            >
+              <HeartPulse className="mr-2 h-4 w-4" />
+              Visit {sauti.name}
               <ArrowUpRight className="ml-auto h-3.5 w-3.5 text-muted-foreground" />
             </CommandItem>
           </CommandGroup>
