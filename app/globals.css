@@ -382,20 +382,24 @@
     line-height: 1.5;
   }
   .resume-header {
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--rule);
   }
   .resume-contact {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 1.25rem;
-    font-size: 0.85rem;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.45rem 1.15rem;
+    font-size: 0.82rem;
     color: var(--ink-soft);
   }
   .resume-contact li {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
+    white-space: nowrap;
   }
   .resume-contact a {
     color: var(--ink);
@@ -612,6 +616,14 @@
     .resume-exp-company,
     .resume-cert-name,
     .resume-contact a { color: var(--ink) !important; }
+    /* Keep the contact line tidy and on a single row in the narrow print column */
+    .resume-header { padding-bottom: 0.55rem !important; margin-bottom: 1.2rem !important; }
+    .resume-contact {
+      justify-content: flex-start !important;
+      gap: 0.3rem 0.85rem !important;
+      font-size: 0.72rem !important;
+    }
+    .resume-contact li { white-space: nowrap !important; }
     .resume-exp,
     .resume-certs li,
     .resume-refs li,
