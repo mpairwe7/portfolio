@@ -28,7 +28,7 @@ export function About() {
               />
               <div className="relative overflow-hidden rounded-2xl glass-surface-subtle p-1">
                 <Image
-                  src="/images/lauben.jpg"
+                  src="/images/mpairwe-lauben.png"
                   alt={`${profile.fullName} — software engineer based in ${profile.location}`}
                   width={600}
                   height={600}

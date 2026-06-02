@@ -57,7 +57,7 @@ export default function ResumePage() {
         <aside className="resume-side">
           <div className="resume-avatar">
             <Image
-              src="/images/author1.jpg"
+              src="/images/mpairwe-lauben.png"
               alt={profile.fullName}
               width={160}
               height={160}

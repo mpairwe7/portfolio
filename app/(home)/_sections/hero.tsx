@@ -68,7 +68,7 @@ export function Hero() {
             <div className="flex lg:hidden justify-center mb-6">
               <div className="relative w-24 h-24 rounded-full overflow-hidden border border-primary/30 shadow-lg">
                 <Image
-                  src="/images/lauben.jpg"
+                  src="/images/mpairwe-lauben.png"
                   alt={`${profile.fullName} — profile photo`}
                   fill
                   className="object-cover"
@@ -166,7 +166,7 @@ export function Hero() {
               <div className="absolute -inset-8 rounded-full bg-gradient-to-br from-primary/30 via-primary/10 to-transparent blur-3xl" />
               <div className="relative w-80 h-80 rounded-full overflow-hidden border border-primary/20 shadow-2xl">
                 <Image
-                  src="/images/lauben.jpg"
+                  src="/images/mpairwe-lauben.png"
                   alt={profile.fullName}
                   fill
                   className="object-cover"

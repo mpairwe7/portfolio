@@ -81,7 +81,7 @@ const jsonLdPerson = {
   "@type": "Person",
   name: profile.fullName,
   url: SITE_URL,
-  image: `${SITE_URL}/images/lauben.jpg`,
+  image: `${SITE_URL}/images/mpairwe-lauben.png`,
   jobTitle:
     "DevSecOps Engineer · ML Engineer · Agentic AI Engineer · Sauti Health Partner",
   worksFor: [
