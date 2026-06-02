@@ -19,7 +19,7 @@ const SITE_URL =
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${profile.fullName} · DevSecOps · ML · Agentic AI Engineer`,
+    default: `${profile.fullName} · DevSecOps · Cloud-Native · ML · Agentic AI Engineer`,
     template: `%s · ${profile.fullName}`,
   },
   description:
@@ -27,6 +27,7 @@ export const metadata = {
   keywords: [
     "Mpairwe Lauben",
     "DevSecOps Engineer",
+    "Cloud Native Engineer",
     "ML Engineer",
     "Agentic AI Engineer",
     "LLM Agents",
@@ -54,7 +55,7 @@ export const metadata = {
   creator: profile.fullName,
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${profile.fullName} · DevSecOps · ML · Agentic AI Engineer`,
+    title: `${profile.fullName} · DevSecOps · Cloud-Native · ML · Agentic AI Engineer`,
     description:
       "DevSecOps @ AIBOS · Co-founder @ Ionatec · Engineering partner @ Sauti Health · Applied ML & agentic AI · Kampala, Uganda.",
     url: SITE_URL,
@@ -64,7 +65,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.fullName} · DevSecOps · ML · Agentic AI`,
+    title: `${profile.fullName} · DevSecOps · Cloud-Native · ML · Agentic AI`,
     description:
       "DevSecOps @ AIBOS · Co-founder @ Ionatec · Partner @ Sauti Health · Kampala.",
     creator: "@mpairwelauben",
@@ -83,7 +84,7 @@ const jsonLdPerson = {
   url: SITE_URL,
   image: `${SITE_URL}/images/mpairwe-lauben.png`,
   jobTitle:
-    "DevSecOps Engineer · ML Engineer · Agentic AI Engineer · Sauti Health Partner",
+    "DevSecOps Engineer · Cloud-Native Engineer · ML Engineer · Agentic AI Engineer · Sauti Health Partner",
   worksFor: [
     {
       "@type": "Organization",

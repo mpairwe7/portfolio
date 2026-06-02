@@ -2,7 +2,7 @@ export const profile = {
   fullName: "Mpairwe Lauben",
   shortName: "ML",
   title:
-    "DevSecOps · ML · Agentic AI Engineer · Co-founder · Sauti Health partner",
+    "DevSecOps · Cloud-Native · ML · Agentic AI Engineer · Co-founder · Sauti Health partner",
   dob: "22 October 1995",
   email: "mpairwelauben75@gmail.com",
   phone: "+256 773 336 896",
@@ -19,7 +19,7 @@ export const profile = {
   heroTagline:
     "I build secure cloud platforms, production ML systems, and agentic AI tooling. DevSecOps at AIBOS Uganda by day, co-founding IONATECH — an AI startup in Kampala — by night, and partnering with Sauti Health on emergency-dispatch infrastructure for sub-Saharan Africa — shipping in public across all three.",
   footerTagline:
-    "DevSecOps · ML · Agentic AI · Ionatec co-founder · Sauti Health partner · Kampala, Uganda",
+    "DevSecOps · Cloud-Native · ML · Agentic AI · Ionatec co-founder · Sauti Health partner · Kampala, Uganda",
   aboutParagraphs: [
     "I am **Mpairwe Lauben**, a DevSecOps engineer and applied ML practitioner based in Kampala, Uganda, and co-founder of **IONATECH** (ionatec.com) — a startup shipping production AI for East African operators.",
     "I also work as a developer in partnership with **Sauti Health** (sautihealth.com) on the engineering behind their pre-hospital emergency dispatch platform — USSD-first, offline-capable, and built for the realities of low-resource settings across sub-Saharan Africa.",
@@ -33,7 +33,7 @@ export const profile = {
     { label: "Flagship builds", value: "16" },
     { label: "Active partnerships", value: "3" },
   ],
-  availability: "Available for DevSecOps / ML / agentic roles",
+  availability: "Available for DevSecOps / cloud-native / ML / agentic roles",
   locationBadge: "📍 Kampala · UTC+3",
   languages: ["English (Fluent)", "German (Basic)"],
 } as const

@@ -1,5 +1,6 @@
 export const typingRoles = [
   "DevSecOps Engineer",
+  "Cloud-Native Engineer",
   "ML Engineer",
   "Agentic AI Engineer",
   "Ionatec Co-founder",

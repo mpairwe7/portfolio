@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og"
 import { profile } from "@/lib/content/profile"
 
 export const runtime = "nodejs"
-export const alt = `${profile.fullName} — DevSecOps · ML · Agentic AI Engineer`
+export const alt = `${profile.fullName} — DevSecOps · Cloud-Native · ML · Agentic AI Engineer`
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -63,7 +63,7 @@ export default function OGImage() {
             marginBottom: 56,
           }}
         >
-          DevSecOps · ML · Agentic AI · Ionatec Co-founder · Sauti Health Partner
+          DevSecOps · Cloud-Native · ML · Agentic AI · Ionatec Co-founder · Sauti Health Partner
         </div>
         <div
           style={{

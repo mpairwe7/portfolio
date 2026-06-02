@@ -13,7 +13,7 @@ import { sauti } from "@/lib/content/sauti"
 
 export const metadata: Metadata = {
   title: "Resume",
-  description: `Printable resume for ${profile.fullName} — DevSecOps, ML, and Agentic AI Engineer.`,
+  description: `Printable resume for ${profile.fullName} — DevSecOps, cloud-native, ML, and Agentic AI Engineer.`,
   alternates: { canonical: "/resume" },
 }
 
@@ -71,7 +71,7 @@ export default function ResumePage() {
             <p>{lastName.toUpperCase()}</p>
           </div>
           <p className="resume-title">
-            DEVSECOPS · ML · AGENTIC AI ENGINEER
+            DEVSECOPS · CLOUD-NATIVE · ML · AGENTIC AI ENGINEER
           </p>
 
           <SideSection title="About">
