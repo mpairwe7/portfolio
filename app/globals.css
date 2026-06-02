@@ -520,8 +520,15 @@
       size: A4;
       margin: 0;
     }
-    html, body {
-      background: #fff !important;
+    /* Navy sidebar strip painted by the ROOT element so it repeats on every
+       page of a multi-page resume (split at 32% to match the sidebar column). */
+    html {
+      background: linear-gradient(to right, #1a1816 32%, #fff 32%) !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    body {
+      background: transparent !important;
       color: var(--ink) !important;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
@@ -534,14 +541,39 @@
       display: none !important;
     }
     .resume-root {
-      background: #fff !important;
+      background: transparent !important;
     }
     .resume-toolbar { display: none !important; }
+    /* Float-based two columns: the sidebar floats in the left 32% (its content
+       appears once), the main content flows down the right column across all
+       pages. The navy strip behind the sidebar comes from the html gradient and
+       repeats per page — no CSS-grid fragmentation, no stranded blocks. */
     .resume-doc {
+      display: block !important;
       box-shadow: none !important;
       margin: 0 !important;
       max-width: none !important;
-      grid-template-columns: 32% 1fr !important;
+      background: transparent !important;
+    }
+    .resume-side {
+      float: left !important;
+      width: 32% !important;
+      background: transparent !important;
+      padding: 13mm 6mm 8mm !important;
+      box-sizing: border-box !important;
+    }
+    .resume-main {
+      margin-left: 32% !important;
+      padding: 13mm 9mm 11mm !important;
+      box-sizing: border-box !important;
+    }
+    /* Compact the sidebar skills into a wrapping row so the sidebar stays within
+       a single page (required for the float to paginate cleanly). */
+    .resume-skills {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      gap: 2px 7px !important;
     }
     .resume-side,
     .resume-side *,
@@ -550,7 +582,6 @@
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
-    .resume-side { background: var(--side-bg) !important; }
     .resume-side-h,
     .resume-title,
     .resume-exp-period,
@@ -581,7 +612,10 @@
     .resume-exp-company,
     .resume-cert-name,
     .resume-contact a { color: var(--ink) !important; }
-    .resume-exp { break-inside: avoid; }
+    .resume-exp,
+    .resume-certs li,
+    .resume-refs li,
+    .resume-side-section { break-inside: avoid; }
     a { text-decoration: none !important; }
   }
 
