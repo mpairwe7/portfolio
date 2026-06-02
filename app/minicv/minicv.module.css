@@ -1,0 +1,314 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   MiniCV — FlowCV-style two-column brief C.V. for the Bank of Uganda Hackathon.
+   Navy full-height sidebar (identity + contacts + profile) and a white main
+   column with gray section bands. Compressed to a single A4 page. Self-contained
+   CSS Module + serif system fonts so the headless-Chrome / WeasyPrint PDF render
+   is deterministic.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.root {
+  --navy: #16314e;
+  --band: #e8e8ea;
+  --band-ink: #303a44;
+  --ink: #232323;
+  --ink-soft: #45474a;
+  --muted: #707276;
+  --side-ink: #f2f0ec;
+  --side-muted: #aebccb;
+  --rule: #e2e2e4;
+  --serif: Georgia, "Liberation Serif", "Times New Roman", "DejaVu Serif", serif;
+  --mono: "DejaVu Sans Mono", "Liberation Mono", "Courier New", monospace;
+
+  background: #d7dbe0;
+  padding: 24px 16px 60px;
+  font-family: var(--serif);
+  color: var(--ink);
+}
+
+/* Screen-only toolbar — hidden in print / PDF capture. */
+.toolbar {
+  max-width: 820px;
+  margin: 0 auto 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.toolbarLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #3a4654;
+  text-decoration: none;
+}
+
+.toolbarLink:hover {
+  color: var(--navy);
+}
+
+.toolbarIcon {
+  width: 13px;
+  height: 13px;
+}
+
+/* The page sheet — A4, navy sidebar via a hard-stop gradient so the colour
+   fills full page height regardless of content. */
+.doc {
+  max-width: 820px;
+  margin: 0 auto;
+  min-height: 285mm;
+  display: grid;
+  grid-template-columns: 34% 66%;
+  background: linear-gradient(to right, var(--navy) 34%, #fff 34%);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────── */
+.sidebar {
+  padding: 30px 22px 26px;
+  color: var(--side-ink);
+}
+
+.name {
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.headline {
+  font-size: 12.5px;
+  line-height: 1.32;
+  margin: 9px 0 0;
+  color: var(--side-ink);
+}
+
+.photo {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 16px 0 14px;
+  border: 3px solid rgba(255, 255, 255, 0.16);
+}
+
+.contacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.contacts li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 10.5px;
+  line-height: 1.25;
+}
+
+.contacts a {
+  color: var(--side-ink);
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.cIcon {
+  width: 13px;
+  height: 13px;
+  color: var(--side-muted);
+  flex: none;
+}
+
+/* Sidebar section band (PROFILE) */
+.sideBand {
+  margin: 18px 0 9px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.sideBandIcon {
+  width: 13px;
+  height: 13px;
+  color: var(--side-ink);
+}
+
+.sideBandTitle {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.profileText {
+  font-size: 10.8px;
+  line-height: 1.42;
+  margin: 0;
+  color: var(--side-ink);
+}
+
+/* ── Main column ──────────────────────────────────────────────────────── */
+.main {
+  padding: 13px 26px 8px 28px;
+}
+
+.band {
+  background: var(--band);
+  color: var(--band-ink);
+  border-radius: 3px;
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+
+.section + .section .band {
+  margin-top: 9px;
+}
+
+.bandIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.bandTitle {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+/* Entries (experience + education) */
+.entry {
+  margin-bottom: 6px;
+}
+
+.entryTitle {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.entrySub {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin: 1px 0 0;
+}
+
+.entryPeriod {
+  font-size: 10px;
+  color: var(--muted);
+  margin: 1px 0 0;
+}
+
+.bullets {
+  margin: 3px 0 0;
+  padding-left: 15px;
+  font-size: 10.8px;
+  line-height: 1.32;
+  color: var(--ink-soft);
+}
+
+.bullets li {
+  margin: 1.5px 0;
+}
+
+.tags {
+  font-size: 10px;
+  color: var(--muted);
+  margin: 3px 0 0;
+}
+
+/* Skills */
+.skillGroup {
+  margin-bottom: 6px;
+}
+
+.skillLabel {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.skillTools {
+  font-size: 10.8px;
+  color: var(--ink-soft);
+  margin: 1px 0 0;
+  line-height: 1.3;
+}
+
+/* Availability */
+.availTitle {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.availMeta {
+  font-size: 10px;
+  color: var(--muted);
+  margin: 1px 0 0;
+}
+
+.availText {
+  font-size: 10.8px;
+  color: var(--ink-soft);
+  line-height: 1.34;
+  margin: 3px 0 0;
+}
+
+/* ── Print / PDF ──────────────────────────────────────────────────────── */
+@media print {
+  /* Scoped to /minicv (only this page imports this module): kill the default
+     body margin / min-height that otherwise stacks past the A4 box and emits a
+     blank trailing page. */
+  :global(html),
+  :global(body) {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+  }
+
+  .root {
+    background: #fff;
+    padding: 0;
+  }
+
+  .toolbar {
+    display: none !important;
+  }
+
+  .doc {
+    max-width: none;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .doc,
+  .doc * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
