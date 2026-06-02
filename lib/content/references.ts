@@ -29,4 +29,11 @@ export const references: Reference[] = [
     initial: "FN",
     gradient: "from-green-500 to-green-700",
   },
+  {
+    name: "Dr. Ggaliwango Marvin",
+    role: "Lecturer & AI/ML Mentor",
+    institution: "Makerere University, School of Computing & IT",
+    initial: "GM",
+    gradient: "from-amber-500 to-orange-700",
+  },
 ]
