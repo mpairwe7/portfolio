@@ -1,0 +1,41 @@
+# CI — build & type-check the Next.js app with Bun.
+#
+# Deployment (CD) is handled by Vercel's Git integration (see vercel.json and the
+# linked .vercel project), so this workflow only validates that every push and PR
+# compiles and type-checks. It does NOT deploy.
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build (Bun)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        run: bun run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
