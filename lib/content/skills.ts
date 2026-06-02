@@ -84,7 +84,7 @@ export const skillStacks: StackGroup[] = [
     subtitle: "tools · memory · evals · guardrails",
     featured: true,
     tools: [
-      "Claude Agent SDK",
+      "LangChain",
       "LangGraph",
       "Model Context Protocol",
       "Vercel AI Gateway",
@@ -213,9 +213,9 @@ export const domainCards: DomainCard[] = [
     iconBg: "bg-purple-500/10",
     borderColor: "border-t-purple-400",
     title: "ML & Agentic AI",
-    desc: "End-to-end applied ML, RAG pipelines with rigorous evals, and agentic systems on Claude Agent SDK + LangGraph with MCP-exposed tool surfaces.",
+    desc: "End-to-end applied ML, RAG pipelines with rigorous evals, and agentic systems on LangChain + LangGraph with MCP-exposed tool surfaces.",
     tags: [
-      "Claude Agent SDK",
+      "LangChain",
       "LangGraph",
       "MCP",
       "Qdrant",

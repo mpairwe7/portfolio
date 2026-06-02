@@ -5,12 +5,12 @@ export const caseStudies: Record<string, CaseStudy> = {
     slug: "mcp-toolkit",
     title: "MCP Toolkit for DevSecOps",
     subtitle:
-      "A Model Context Protocol server that exposes secure DevOps tools to Claude agents — cluster inspection, SBOM diffing, Trivy scans, OPA policy evaluation — with typed schemas, least-privilege auth, and full audit logs.",
+      "A Model Context Protocol server that exposes secure DevOps tools to LLM agents — cluster inspection, SBOM diffing, Trivy scans, OPA policy evaluation — with typed schemas, least-privilege auth, and full audit logs.",
     summary:
-      "MCP server exposing 12 DevOps tools to Claude agents with audit logging and RBAC.",
+      "MCP server exposing 12 DevOps tools to LLM agents with audit logging and RBAC.",
     coverImage: "/images/awsserveless.webp",
     category: "agentic",
-    stack: ["TypeScript", "MCP", "Claude Agent SDK", "Zod", "Kubernetes", "Trivy", "OPA"],
+    stack: ["TypeScript", "MCP", "LangChain", "Zod", "Kubernetes", "Trivy", "OPA"],
     metrics: [
       { label: "Tools exposed", value: "12" },
       { label: "p95 latency", value: "< 400ms" },
@@ -73,7 +73,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       "5 specialised agents ship 3× faster than a single-agent baseline.",
     coverImage: "/images/predictive maintenance.webp",
     category: "agentic",
-    stack: ["LangGraph", "Claude Agent SDK", "Python", "Redis", "Next.js", "Postgres"],
+    stack: ["LangGraph", "LangChain", "Python", "Redis", "Next.js", "Postgres"],
     metrics: [
       { label: "Specialised agents", value: "5" },
       { label: "Ship rate", value: "3×" },

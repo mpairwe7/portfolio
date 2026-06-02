@@ -27,7 +27,7 @@ export const ionatec = {
   ],
   // USER: exact stack the studio is betting on
   stack: [
-    "Claude Agent SDK",
+    "LangChain",
     "LangGraph",
     "Python",
     "TypeScript",

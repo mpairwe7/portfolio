@@ -58,13 +58,13 @@ export const experiences: Experience[] = [
     borderColor: "border-l-primary",
     bullets: [
       "Co-founded IONATECH (ionatec.com) — a startup building applied ML, agentic AI, and secure cloud systems for East African operators",
-      "Ship LLM agents on the Claude Agent SDK + LangGraph: tool-use, retrieval, multi-agent orchestration, and evals",
+      "Ship LLM agents with LangChain + LangGraph: tool-use, retrieval, multi-agent orchestration, and evals",
       "Build RAG pipelines on Qdrant / pgvector with hybrid retrieval, rerank, and Braintrust/Promptfoo eval harnesses",
       "Deliver classical ML for classification, regression, and ranking — with monitoring, drift detection, and retraining loops",
       "Run the engineering curriculum and mentor residents from prototype through production",
     ],
     tags: [
-      "Claude Agent SDK",
+      "LangChain",
       "LangGraph",
       "MCP",
       "Qdrant",

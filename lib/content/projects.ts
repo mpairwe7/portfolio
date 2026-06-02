@@ -6,10 +6,10 @@ export const projects: Project[] = [
     slug: "mcp-toolkit",
     title: "MCP Toolkit for DevSecOps",
     summary:
-      "A Model Context Protocol server exposing secure DevOps tools (cluster inspection, SBOM diffing, Trivy scans, policy-eval) to Claude agents, with typed schemas and audit logs.",
+      "A Model Context Protocol server exposing secure DevOps tools (cluster inspection, SBOM diffing, Trivy scans, policy-eval) to LLM agents, with typed schemas and audit logs.",
     image: "/images/awsserveless.webp",
     category: "agentic",
-    stack: ["TypeScript", "MCP", "Claude Agent SDK", "Zod", "Kubernetes", "Trivy"],
+    stack: ["TypeScript", "MCP", "LangChain", "Zod", "Kubernetes", "Trivy"],
     metrics: [
       { label: "Tools exposed", value: "12" },
       { label: "p95 latency", value: "< 400ms" },
@@ -60,7 +60,7 @@ export const projects: Project[] = [
       "LangGraph-powered orchestrator that coordinates research, coding, and review agents with shared state, tool-use, and human-in-the-loop checkpoints.",
     image: "/images/predictive maintenance.webp",
     category: "agentic",
-    stack: ["LangGraph", "Claude Agent SDK", "Python", "Redis", "Next.js"],
+    stack: ["LangGraph", "LangChain", "Python", "Redis", "Next.js"],
     metrics: [
       { label: "Agents", value: "5 specialised" },
       { label: "Ship rate", value: "3× vs single-agent" },

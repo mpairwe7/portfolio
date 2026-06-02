@@ -81,7 +81,7 @@ export default function ResumePage() {
               at Sauti Health (sautihealth.com), building emergency-dispatch
               infrastructure for sub-Saharan Africa. By day, CI/CD, cloud, and
               security posture at AIBOS Uganda. Outside: training models,
-              building agentic systems on the Claude Agent SDK and LangGraph,
+              building agentic systems on LangChain and LangGraph,
               and instrumenting MCP servers that expose tools to LLMs.
             </p>
           </SideSection>

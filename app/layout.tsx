@@ -31,7 +31,7 @@ export const metadata = {
     "Agentic AI Engineer",
     "LLM Agents",
     "MCP Server",
-    "Claude Agent SDK",
+    "LangChain",
     "LangGraph",
     "Ionatec",
     "IONATECH",
