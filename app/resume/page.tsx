@@ -20,6 +20,11 @@ export const metadata: Metadata = {
 const [firstName, ...rest] = profile.fullName.split(" ")
 const lastName = rest.join(" ")
 
+// Bake the accent colour into the lucide SVG stroke attribute. The PDF renderer
+// (WeasyPrint) draws inline SVGs in isolation and ignores the CSS-driven
+// currentColor, so the icons would otherwise fall back to black.
+const ICON_ACCENT = "#c47a10"
+
 // Flatten all featured-stack tools into a compact sidebar skill list
 const skillList = skillStacks
   .filter((s) => s.featured)
@@ -97,28 +102,28 @@ export default function ResumePage() {
           <SideSection title="Links">
             <ul className="resume-links">
               <li>
-                <Linkedin className="resume-link-icon" aria-hidden="true" />
+                <Linkedin className="resume-link-icon" color={ICON_ACCENT} aria-hidden="true" />
                 <span>
                   <span className="resume-link-label">LinkedIn</span>
                   <a href={profile.linkedinUrl}>{profile.linkedinHandle}</a>
                 </span>
               </li>
               <li>
-                <Github className="resume-link-icon" aria-hidden="true" />
+                <Github className="resume-link-icon" color={ICON_ACCENT} aria-hidden="true" />
                 <span>
                   <span className="resume-link-label">GitHub</span>
                   <a href={profile.githubUrl}>{profile.githubHandle}</a>
                 </span>
               </li>
               <li>
-                <Globe className="resume-link-icon" aria-hidden="true" />
+                <Globe className="resume-link-icon" color={ICON_ACCENT} aria-hidden="true" />
                 <span>
                   <span className="resume-link-label">IONATECH</span>
                   <a href={ionatec.url}>{ionatec.url.replace(/^https?:\/\//, "")}</a>
                 </span>
               </li>
               <li>
-                <Globe className="resume-link-icon" aria-hidden="true" />
+                <Globe className="resume-link-icon" color={ICON_ACCENT} aria-hidden="true" />
                 <span>
                   <span className="resume-link-label">Sauti Health</span>
                   <a href={sauti.url}>{sauti.url.replace(/^https?:\/\//, "")}</a>
@@ -170,15 +175,15 @@ export default function ResumePage() {
           <header className="resume-header">
             <ul className="resume-contact">
               <li>
-                <MapPin className="resume-h-icon" aria-hidden="true" />
+                <MapPin className="resume-h-icon" color={ICON_ACCENT} aria-hidden="true" />
                 {profile.location}
               </li>
               <li>
-                <Phone className="resume-h-icon" aria-hidden="true" />
+                <Phone className="resume-h-icon" color={ICON_ACCENT} aria-hidden="true" />
                 {profile.phone}
               </li>
               <li>
-                <Mail className="resume-h-icon" aria-hidden="true" />
+                <Mail className="resume-h-icon" color={ICON_ACCENT} aria-hidden="true" />
                 <a href={`mailto:${profile.email}`}>{profile.email}</a>
               </li>
             </ul>
