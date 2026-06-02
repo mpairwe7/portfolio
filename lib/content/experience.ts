@@ -51,13 +51,13 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    company: "Ionatec · Iona Institute of Technology",
+    company: "IONATECH",
     role: "Co-founder · ML & Agentic Engineer",
     period: "Feb 2023 – Present",
     type: "Part-time",
     borderColor: "border-l-primary",
     bullets: [
-      "Co-founded Ionatec (ionatec.com) — an engineering institute and applied-AI studio training East African engineers on real production stacks",
+      "Co-founded IONATECH (ionatec.com) — a startup building applied ML, agentic AI, and secure cloud systems for East African operators",
       "Ship LLM agents on the Claude Agent SDK + LangGraph: tool-use, retrieval, multi-agent orchestration, and evals",
       "Build RAG pipelines on Qdrant / pgvector with hybrid retrieval, rerank, and Braintrust/Promptfoo eval harnesses",
       "Deliver classical ML for classification, regression, and ranking — with monitoring, drift detection, and retraining loops",

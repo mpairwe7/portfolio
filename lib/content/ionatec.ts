@@ -1,7 +1,7 @@
 /**
- * Ionatec — Iona Institute of Technology
+ * IONATECH — startup company (ionatec.com)
  *
- * Source: https://ionatec.com (title: "Iona Institute of Technology"),
+ * Source: https://ionatec.com (title: "IONATECH"),
  *   fetched 2026-04-19. Homepage is a Vite SPA so richer copy could not be
  *   scraped non-interactively. Below is a structural scaffold — fields
  *   marked `// USER:` should be replaced with the founders' approved copy.
@@ -10,18 +10,18 @@
  */
 
 export const ionatec = {
-  name: "Iona Institute of Technology",
-  shortName: "Ionatec",
+  name: "IONATECH",
+  shortName: "IONATECH",
   url: "https://ionatec.com",
   role: "Co-founder · ML Engineer",
   // USER: 1-line mission that appears under the logo
-  tagline: "Building an engineering institute where East African talent ships production AI.",
-  // USER: 2–3 sentence paragraph describing what Ionatec is and who it serves
+  tagline: "A startup shipping production AI for East African operators.",
+  // USER: 2–3 sentence paragraph describing what IONATECH is and who it serves
   mission:
-    "Iona Institute of Technology is a Kampala-based engineering studio and academy building applied ML, agentic AI, and secure cloud systems for emerging-market operators. We train engineers on real production stacks — and ship the products they train on.",
+    "IONATECH is a Kampala-based startup building applied ML, agentic AI, and secure cloud systems for emerging-market operators. We ship production AI products for businesses across East Africa.",
   // USER: 1–3 product or program lines
   products: [
-    "Applied ML & Agentic AI Residency",
+    "Applied ML & Agentic AI product builds",
     "Custom-built LLM agents for SMB operators in East Africa",
     "DevSecOps & cloud-architecture consulting",
   ],

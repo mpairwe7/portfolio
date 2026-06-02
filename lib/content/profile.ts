@@ -17,11 +17,11 @@ export const profile = {
   twitterUrl: "https://twitter.com/mpairwelauben/",
   greeting: "// Portfolio · 2026",
   heroTagline:
-    "I build secure cloud platforms, production ML systems, and agentic AI tooling. DevSecOps at AIBOS Uganda by day, co-founding Iona Institute of Technology in Kampala by night, and partnering with Sauti Health on emergency-dispatch infrastructure for sub-Saharan Africa — shipping in public across all three.",
+    "I build secure cloud platforms, production ML systems, and agentic AI tooling. DevSecOps at AIBOS Uganda by day, co-founding IONATECH — an AI startup in Kampala — by night, and partnering with Sauti Health on emergency-dispatch infrastructure for sub-Saharan Africa — shipping in public across all three.",
   footerTagline:
     "DevSecOps · ML · Agentic AI · Ionatec co-founder · Sauti Health partner · Kampala, Uganda",
   aboutParagraphs: [
-    "I am **Mpairwe Lauben**, a DevSecOps engineer and applied ML practitioner based in Kampala, Uganda, and co-founder of **Iona Institute of Technology** (ionatec.com) — where we ship production AI for East African operators.",
+    "I am **Mpairwe Lauben**, a DevSecOps engineer and applied ML practitioner based in Kampala, Uganda, and co-founder of **IONATECH** (ionatec.com) — a startup shipping production AI for East African operators.",
     "I also work as a developer in partnership with **Sauti Health** (sautihealth.com) on the engineering behind their pre-hospital emergency dispatch platform — USSD-first, offline-capable, and built for the realities of low-resource settings across sub-Saharan Africa.",
     "By day I run CI/CD, cloud, and security posture at **AIBOS Uganda**. Outside that I train models, build agentic systems on the Claude Agent SDK and LangGraph, and instrument MCP servers that expose tools to LLMs. I'm equally comfortable hardening a Kubernetes cluster, evaluating a RAG pipeline, or shipping a Flutter release.",
     "I collaborate well, document thoroughly, and take security posture seriously. I mentor junior engineers, write in public about what I learn, and contribute upstream when the work warrants it.",

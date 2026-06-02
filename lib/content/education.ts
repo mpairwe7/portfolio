@@ -4,7 +4,7 @@ export const education: EducationEntry[] = [
   {
     school: "Makerere University",
     degree: "Bachelor of Science in Software Engineering",
-    period: "2024 – Expected 2027",
+    period: "2022 – Expected 2027",
     cgpa: "4.31",
     borderColor: "border-l-primary",
     highlights: [

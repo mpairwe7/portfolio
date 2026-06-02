@@ -23,7 +23,7 @@ export const metadata = {
     template: `%s · ${profile.fullName}`,
   },
   description:
-    "DevSecOps engineer at AIBOS Uganda, co-founder of Ionatec (Iona Institute of Technology), engineering partner at Sauti Health, and applied ML / agentic AI practitioner shipping production systems from Kampala.",
+    "DevSecOps engineer at AIBOS Uganda, co-founder of IONATECH (AI startup), engineering partner at Sauti Health, and applied ML / agentic AI practitioner shipping production systems from Kampala.",
   keywords: [
     "Mpairwe Lauben",
     "DevSecOps Engineer",
@@ -34,7 +34,7 @@ export const metadata = {
     "Claude Agent SDK",
     "LangGraph",
     "Ionatec",
-    "Iona Institute of Technology",
+    "IONATECH",
     "Sauti Health",
     "Emergency Dispatch",
     "USSD",

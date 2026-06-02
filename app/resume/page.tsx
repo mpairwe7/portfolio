@@ -77,7 +77,7 @@ export default function ResumePage() {
           <SideSection title="About">
             <p className="resume-about">
               DevSecOps engineer and applied ML practitioner. Co-founder of
-              Iona Institute of Technology (ionatec.com) and engineering partner
+              IONATECH (ionatec.com), an AI startup, and engineering partner
               at Sauti Health (sautihealth.com), building emergency-dispatch
               infrastructure for sub-Saharan Africa. By day, CI/CD, cloud, and
               security posture at AIBOS Uganda. Outside: training models,
@@ -113,7 +113,7 @@ export default function ResumePage() {
               <li>
                 <Globe className="resume-link-icon" aria-hidden="true" />
                 <span>
-                  <span className="resume-link-label">Ionatec</span>
+                  <span className="resume-link-label">IONATECH</span>
                   <a href={ionatec.url}>{ionatec.url.replace(/^https?:\/\//, "")}</a>
                 </span>
               </li>

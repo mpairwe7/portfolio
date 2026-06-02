@@ -6,15 +6,18 @@
  *   1. Spawn `next start` on port 3030 (uses existing .next build)
  *      Falls back to `next dev` if no build is found.
  *   2. Poll http://localhost:3030/resume until it returns 200.
- *   3. Run headless Chrome with --print-to-pdf on /resume?print=1.
+ *   3. Render to PDF with whichever engine is available:
+ *        - headless Chrome / Chromium (--print-to-pdf), preferred; else
+ *        - WeasyPrint (`weasyprint <url> <out>`), a pure-Python HTML→PDF engine.
+ *      Override with PDF_ENGINE=chrome|weasyprint, or CHROME_BIN=<path>.
  *   4. Tear the server down.
  *
- * Run: `bun run resume:pdf`
+ * Run: `npm run resume:pdf`
  *
- * Requires: google-chrome or chromium in PATH.
+ * Requires: google-chrome/chromium in PATH, OR weasyprint (`pip install weasyprint`).
  */
 
-import { spawn } from "node:child_process"
+import { spawn, spawnSync } from "node:child_process"
 import { existsSync } from "node:fs"
 import { mkdir } from "node:fs/promises"
 import { dirname, resolve } from "node:path"
@@ -23,17 +26,28 @@ import { setTimeout as sleep } from "node:timers/promises"
 const PORT = 3030
 const URL = `http://localhost:${PORT}/resume`
 const OUTPUT = resolve("public/mpairwe-lauben-resume.pdf")
-const CHROME_BIN =
-  process.env.CHROME_BIN ??
-  ["google-chrome", "chromium", "chromium-browser", "chrome"].find((bin) => {
-    try {
-      const r = spawn("which", [bin])
-      return true
-    } catch {
-      return false
-    }
-  }) ??
-  "google-chrome"
+
+/** Return the absolute path of the first binary found in PATH, or null. */
+function which(bin) {
+  const r = spawnSync("which", [bin], { encoding: "utf8" })
+  return r.status === 0 ? r.stdout.trim() : null
+}
+
+function resolveEngine() {
+  const forced = process.env.PDF_ENGINE
+  const chromeBin =
+    process.env.CHROME_BIN ??
+    ["google-chrome", "chromium", "chromium-browser", "chrome"]
+      .map(which)
+      .find(Boolean)
+  const weasy = which("weasyprint")
+
+  if (forced === "chrome") return { engine: "chrome", bin: chromeBin }
+  if (forced === "weasyprint") return { engine: "weasyprint", bin: weasy }
+  if (chromeBin) return { engine: "chrome", bin: chromeBin }
+  if (weasy) return { engine: "weasyprint", bin: weasy }
+  return { engine: null, bin: null }
+}
 
 const haveBuild = existsSync(resolve(".next/BUILD_ID"))
 const mode = haveBuild ? "start" : "dev"
@@ -49,7 +63,49 @@ async function waitFor(url, { tries = 60, every = 500 } = {}) {
   throw new Error(`Timed out waiting for ${url}`)
 }
 
+function run(bin, args) {
+  return new Promise((res, reject) => {
+    const child = spawn(bin, args, { stdio: "inherit" })
+    child.on("exit", (code) =>
+      code === 0 ? res() : reject(new Error(`${bin} exited with ${code}`))
+    )
+    child.on("error", reject)
+  })
+}
+
+async function printPdf({ engine, bin }) {
+  if (engine === "chrome") {
+    console.log(`[resume-pdf] engine: chrome (${bin})`)
+    return run(bin, [
+      "--headless=new",
+      "--no-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--hide-scrollbars",
+      "--run-all-compositor-stages-before-draw",
+      "--virtual-time-budget=5000",
+      "--no-pdf-header-footer",
+      `--print-to-pdf=${OUTPUT}`,
+      URL,
+    ])
+  }
+  if (engine === "weasyprint") {
+    console.log(`[resume-pdf] engine: weasyprint (${bin})`)
+    return run(bin, ["--media-type", "print", URL, OUTPUT])
+  }
+  throw new Error(
+    "No PDF engine found. Install google-chrome/chromium, or run `pip install weasyprint`."
+  )
+}
+
 async function main() {
+  const engine = resolveEngine()
+  if (!engine.engine) {
+    throw new Error(
+      "No PDF engine found. Install google-chrome/chromium, or run `pip install weasyprint`."
+    )
+  }
+
   await mkdir(dirname(OUTPUT), { recursive: true })
 
   console.log(`[resume-pdf] Starting next ${mode} on :${PORT}`)
@@ -63,30 +119,7 @@ async function main() {
   try {
     await waitFor(URL, { tries: 120, every: 500 })
     console.log(`[resume-pdf] /resume responding; printing to ${OUTPUT}`)
-
-    const chromeArgs = [
-      "--headless=new",
-      "--no-sandbox",
-      "--disable-gpu",
-      "--disable-dev-shm-usage",
-      "--hide-scrollbars",
-      "--run-all-compositor-stages-before-draw",
-      "--virtual-time-budget=5000",
-      "--no-pdf-header-footer",
-      `--print-to-pdf=${OUTPUT}`,
-      URL,
-    ]
-
-    await new Promise((resolveRun, reject) => {
-      const chrome = spawn(CHROME_BIN, chromeArgs, { stdio: "inherit" })
-      chrome.on("exit", (code) =>
-        code === 0
-          ? resolveRun()
-          : reject(new Error(`${CHROME_BIN} exited with ${code}`))
-      )
-      chrome.on("error", reject)
-    })
-
+    await printPdf(engine)
     console.log(`[resume-pdf] ✓ PDF written to ${OUTPUT}`)
   } finally {
     server.kill("SIGTERM")
