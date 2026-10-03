@@ -9,6 +9,8 @@ export const profile = {
   phoneTel: "+256773336896",
   location: "Kampala, Uganda",
   nationality: "Ugandan",
+  portfolioUrl: "https://www.mpairwelauben.me",
+  portfolioHandle: "mpairwelauben.me",
   resumeUrl: "/mpairwe-lauben-resume.pdf",
   linkedinUrl: "https://www.linkedin.com/in/mpairwe-lauben-3a1461344",
   linkedinHandle: "mpairwe-lauben-3a1461344",

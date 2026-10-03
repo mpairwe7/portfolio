@@ -112,7 +112,7 @@ export type SocialLink = {
 }
 
 export type ContactLink = {
-  iconKey: "mail" | "phone" | "map" | "linkedin" | "github"
+  iconKey: "mail" | "phone" | "map" | "linkedin" | "github" | "globe"
   label: string
   value: string
   href: string | null

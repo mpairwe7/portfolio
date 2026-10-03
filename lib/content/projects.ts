@@ -223,7 +223,7 @@ export const projects: Project[] = [
     image: "/images/carreer.jpg",
     category: "web",
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind", "motion", "MDX"],
-    liveUrl: "https://mpairweportfolio.vercel.app",
+    liveUrl: "https://www.mpairwelauben.me",
     repoUrl: "https://github.com/mpairweLandwind",
     status: "shipped",
     featured: false,

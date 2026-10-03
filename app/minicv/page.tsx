@@ -21,7 +21,7 @@ import { education } from "@/lib/content/education"
 import { ionatec } from "@/lib/content/ionatec"
 import styles from "./minicv.module.css"
 
-const PORTFOLIO_URL = "mpairwelauben.me"
+const PORTFOLIO_URL = "www.mpairwelauben.me"
 const MINICV_PDF = "/mpairwe-lauben-mini-cv.pdf"
 const PHOTO = "/images/mpairwe-lauben.png"
 
@@ -127,7 +127,7 @@ export default function MiniCvPage() {
             </li>
             <li>
               <Link2 className={styles.cIcon} aria-hidden="true" />
-              <a href={`https://${PORTFOLIO_URL}`}>{PORTFOLIO_URL}</a>
+              <a href={profile.portfolioUrl}>{PORTFOLIO_URL}</a>
             </li>
             <li>
               <Github className={styles.cIcon} aria-hidden="true" />

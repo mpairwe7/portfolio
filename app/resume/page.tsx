@@ -102,6 +102,13 @@ export default function ResumePage() {
           <SideSection title="Links">
             <ul className="resume-links">
               <li>
+                <Globe className="resume-link-icon" color={ICON_ACCENT} aria-hidden="true" />
+                <span>
+                  <span className="resume-link-label">Portfolio</span>
+                  <a href={profile.portfolioUrl}>{profile.portfolioHandle}</a>
+                </span>
+              </li>
+              <li>
                 <Linkedin className="resume-link-icon" color={ICON_ACCENT} aria-hidden="true" />
                 <span>
                   <span className="resume-link-label">LinkedIn</span>

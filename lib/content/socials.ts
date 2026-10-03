@@ -1,8 +1,9 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react"
+import { Github, Globe, Linkedin, Mail, Twitter } from "lucide-react"
 import type { SocialLink, ContactLink } from "./types"
 import { profile } from "./profile"
 
 export const socialLinks: SocialLink[] = [
+  { href: profile.portfolioUrl, icon: Globe, label: "Portfolio" },
   { href: profile.twitterUrl, icon: Twitter, label: "Twitter / X" },
   { href: profile.githubUrl, icon: Github, label: "GitHub (mpairweLandwind)" },
   { href: profile.githubSecondaryUrl, icon: Github, label: "GitHub (mpairwe7)" },
@@ -11,6 +12,12 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const contactLinks: ContactLink[] = [
+  {
+    iconKey: "globe",
+    label: "Portfolio",
+    value: profile.portfolioHandle,
+    href: profile.portfolioUrl,
+  },
   {
     iconKey: "mail",
     label: "Email",

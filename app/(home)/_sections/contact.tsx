@@ -12,7 +12,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Github, Linkedin, Loader2, Mail, MapPin, Phone } from "lucide-react"
+import { Github, Globe, Linkedin, Loader2, Mail, MapPin, Phone } from "lucide-react"
 import { toast } from "sonner"
 import { GlassCard } from "@/components/glass/glass-card"
 import { Reveal } from "@/components/motion/reveal"
@@ -22,6 +22,7 @@ import { profile } from "@/lib/content/profile"
 import { sendContact } from "@/app/actions/send-contact"
 
 const ContactIcon = {
+  globe: Globe,
   mail: Mail,
   phone: Phone,
   map: MapPin,
