@@ -6,18 +6,21 @@ import { cn } from "@/lib/utils"
 
 const STATUS_ICON = {
   earned: ShieldCheck,
+  ongoing: GraduationCap,
   planned: GraduationCap,
   expired: Award,
 } as const
 
 const STATUS_STYLES = {
   earned: "border-green-500/25 text-green-400 bg-green-500/5",
+  ongoing: "border-amber-500/25 text-amber-400 bg-amber-500/5",
   planned: "border-primary/25 text-primary bg-primary/5",
   expired: "border-muted text-muted-foreground bg-muted/20",
 } as const
 
 const STATUS_LABEL = {
   earned: "earned",
+  ongoing: "ongoing",
   planned: "studying",
   expired: "expired",
 } as const

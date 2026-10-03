@@ -219,37 +219,6 @@ export default function ResumePage() {
             </div>
           </MainSection>
 
-          <MainSection title="Key Projects">
-            <div className="resume-exp-list">
-              <article className="resume-exp">
-                <div className="resume-exp-left">
-                  <p className="resume-exp-company">Smart Discussion Forum</p>
-                  <p className="resume-exp-loc">
-                    <a href="https://github.com/mpairwe7">github.com/mpairwe7</a>
-                  </p>
-                  <p className="resume-exp-period">2025 – 2026</p>
-                </div>
-                <div className="resume-exp-right">
-                  <h3 className="resume-exp-role">LEAD DEVELOPER · FULL-STACK LARAVEL</h3>
-                  <ul className="resume-exp-bullets">
-                    <li>
-                      Architected and engineered an academic discussion platform with email-domain-gated authentication for university students and lecturers
-                    </li>
-                    <li>
-                      Built reactive discussion channels, moderation workflows, and role-tailored dashboards using Laravel 13, Livewire 3.6, Alpine.js, and Tailwind CSS
-                    </li>
-                    <li>
-                      Enforced code quality and stability with Pest PHP automated test suites, PHPStan Level 7 static analysis, and Dockerised environments
-                    </li>
-                  </ul>
-                  <p className="resume-exp-tags">
-                    LARAVEL · PHP · LIVEWIRE · ALPINE.JS · TAILWIND CSS · SQLITE · DOCKER · PEST PHP
-                  </p>
-                </div>
-              </article>
-            </div>
-          </MainSection>
-
           <MainSection title="Education">
             <div className="resume-edu-list">
               {education.map((edu, i) => (

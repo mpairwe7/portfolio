@@ -7,7 +7,7 @@
  * earned or trimmed.
  */
 
-export type CertificationStatus = "earned" | "planned" | "expired"
+export type CertificationStatus = "earned" | "ongoing" | "planned" | "expired"
 
 export type Certification = {
   name: string
@@ -23,25 +23,25 @@ export const certifications: Certification[] = [
   {
     name: "AWS Certified DevOps Engineer · Professional",
     issuer: "Amazon Web Services",
-    status: "planned",
+    status: "ongoing",
     code: "DOP-C02",
   },
   {
     name: "Certified Kubernetes Security Specialist",
     issuer: "CNCF",
-    status: "planned",
+    status: "ongoing",
     code: "CKS",
   },
   {
     name: "Certified Kubernetes Administrator",
     issuer: "CNCF",
-    status: "planned",
+    status: "ongoing",
     code: "CKA",
   },
   {
     name: "HashiCorp Certified · Terraform Associate",
     issuer: "HashiCorp",
-    status: "planned",
+    status: "ongoing",
     code: "003",
   },
   {
