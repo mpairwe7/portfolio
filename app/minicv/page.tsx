@@ -134,6 +134,10 @@ export default function MiniCvPage() {
               <a href={profile.githubUrl}>{profile.githubHandle}</a>
             </li>
             <li>
+              <Github className={styles.cIcon} aria-hidden="true" />
+              <a href={profile.githubSecondaryUrl}>{profile.githubSecondaryHandle}</a>
+            </li>
+            <li>
               <Linkedin className={styles.cIcon} aria-hidden="true" />
               <a href={profile.linkedinUrl}>{profile.linkedinHandle}</a>
             </li>

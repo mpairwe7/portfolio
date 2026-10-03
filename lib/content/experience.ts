@@ -82,13 +82,14 @@ export const experiences: Experience[] = [
     type: "Part-time",
     borderColor: "border-l-green-500",
     bullets: [
+      "Engineered Smart Discussion Forum — a collaborative academic platform built with Laravel 13, Livewire 3.6, Alpine.js, and Tailwind CSS",
       "Built TaskApp — a Kotlin task management app with real-time Firebase sync",
       "Developed scalable cross-platform apps using React Native and Flutter",
       "Implemented secure JWT and biometric authentication flows",
       "Delivered a fintech mobile app with digital payments, rewards, and transaction tracking",
       "Integrated third-party payment APIs and designed scalable backend architecture",
     ],
-    tags: ["Kotlin", "React Native", "Flutter", "Firebase", "JWT", "Fintech"],
+    tags: ["Laravel", "PHP", "Kotlin", "React Native", "Flutter", "Firebase", "Livewire"],
   },
   {
     company: "PAHAPPA LIMITED",

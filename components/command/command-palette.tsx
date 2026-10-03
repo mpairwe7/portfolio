@@ -227,11 +227,19 @@ export function CommandPalette() {
 
           <CommandGroup heading="Socials">
             <CommandItem
-              value="social github"
+              value="social github mpairwelandwind"
               onSelect={() => run(() => window.open(profile.githubUrl, "_blank"))}
             >
               <Github className="mr-2 h-4 w-4" />
-              GitHub
+              GitHub (mpairweLandwind)
+              <ArrowUpRight className="ml-auto h-3.5 w-3.5 text-muted-foreground" />
+            </CommandItem>
+            <CommandItem
+              value="social github mpairwe7"
+              onSelect={() => run(() => window.open(profile.githubSecondaryUrl, "_blank"))}
+            >
+              <Github className="mr-2 h-4 w-4" />
+              GitHub (mpairwe7)
               <ArrowUpRight className="ml-auto h-3.5 w-3.5 text-muted-foreground" />
             </CommandItem>
             <CommandItem

@@ -4,7 +4,8 @@ import { profile } from "./profile"
 
 export const socialLinks: SocialLink[] = [
   { href: profile.twitterUrl, icon: Twitter, label: "Twitter / X" },
-  { href: profile.githubUrl, icon: Github, label: "GitHub" },
+  { href: profile.githubUrl, icon: Github, label: "GitHub (mpairweLandwind)" },
+  { href: profile.githubSecondaryUrl, icon: Github, label: "GitHub (mpairwe7)" },
   { href: profile.linkedinUrl, icon: Linkedin, label: "LinkedIn" },
   { href: `mailto:${profile.email}`, icon: Mail, label: "Send email" },
 ]
@@ -39,6 +40,12 @@ export const contactLinks: ContactLink[] = [
     label: "GitHub",
     value: profile.githubHandle,
     href: profile.githubUrl,
+  },
+  {
+    iconKey: "github",
+    label: "GitHub (2)",
+    value: profile.githubSecondaryHandle,
+    href: profile.githubSecondaryUrl,
   },
 ]
 

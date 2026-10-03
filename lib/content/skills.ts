@@ -136,11 +136,14 @@ export const skillStacks: StackGroup[] = [
   {
     key: "web",
     title: "Web",
-    subtitle: "full-stack TypeScript",
+    subtitle: "full-stack & enterprise",
     tools: [
       "Next.js",
       "React",
       "TypeScript",
+      "Laravel",
+      "PHP",
+      "Livewire",
       "Tailwind",
       "shadcn/ui",
       "motion",
@@ -173,6 +176,7 @@ export const skillBars: SkillBar[] = [
   { skill: "Agentic systems · MCP · LangGraph · evals", pct: 85 },
   { skill: "TypeScript / Next.js / React", pct: 88 },
   { skill: "Python / FastAPI / Pydantic", pct: 88 },
+  { skill: "Laravel · PHP / Livewire web engineering", pct: 86 },
   { skill: "Java · Spring Boot / Kotlin", pct: 86 },
   { skill: "Flutter & React Native", pct: 82 },
   { skill: "Relational & vector databases", pct: 82 },
@@ -234,6 +238,7 @@ export const domainCards: DomainCard[] = [
     tags: [
       "Next.js",
       "TypeScript",
+      "Laravel",
       "Flutter",
       "React Native",
       "Kotlin",

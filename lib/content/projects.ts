@@ -183,6 +183,27 @@ export const projects: Project[] = [
     featured: false,
   },
   {
+    slug: "smartdiscussionforum",
+    title: "Smart Discussion Forum",
+    summary:
+      "Collaborative academic forum engineered with Laravel 13, Livewire 3.6, Alpine.js, and Tailwind CSS — featuring email-domain-gated authentication, real-time discussion threads, and multi-role student/lecturer dashboards.",
+    image: "/images/blog.png",
+    category: "web",
+    stack: [
+      "Laravel",
+      "Livewire",
+      "PHP",
+      "Alpine.js",
+      "Tailwind CSS",
+      "SQLite",
+      "Vite",
+      "Pest PHP",
+    ],
+    repoUrl: "https://github.com/mpairwe7",
+    status: "shipped",
+    featured: false,
+  },
+  {
     slug: "blog-design",
     title: "Malinga Gerald Blog",
     summary:

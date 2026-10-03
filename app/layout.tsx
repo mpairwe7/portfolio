@@ -110,6 +110,7 @@ const jsonLdPerson = {
   sameAs: [
     profile.linkedinUrl,
     profile.githubUrl,
+    profile.githubSecondaryUrl,
     profile.twitterUrl,
     ionatec.url,
     sauti.url,

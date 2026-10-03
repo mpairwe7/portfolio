@@ -14,6 +14,8 @@ export const profile = {
   linkedinHandle: "mpairwe-lauben-3a1461344",
   githubUrl: "https://github.com/mpairweLandwind",
   githubHandle: "github.com/mpairweLandwind",
+  githubSecondaryUrl: "https://github.com/mpairwe7",
+  githubSecondaryHandle: "github.com/mpairwe7",
   twitterUrl: "https://twitter.com/mpairwelauben/",
   greeting: "// Portfolio · 2026",
   heroTagline:

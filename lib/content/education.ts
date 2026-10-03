@@ -5,10 +5,11 @@ export const education: EducationEntry[] = [
     school: "Makerere University",
     degree: "Bachelor of Science in Software Engineering",
     period: "2022 – Expected 2027",
-    cgpa: "4.31",
+    cgpa: "4.39",
     borderColor: "border-l-primary",
     highlights: [
       "Specialising in AI/ML and Enterprise Application Development",
+      "Built Smart Discussion Forum — collaborative academic platform engineered with Laravel, Livewire, and Tailwind CSS",
       "Integrated Supabase, MongoDB, Cloudflare, and Firebase for scalable storage",
       "Implemented RBAC and encryption for secure multi-role systems",
       "Built a full HRMS system with advanced role and permissions management",
