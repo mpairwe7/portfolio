@@ -3,7 +3,7 @@ import { profile } from "@/lib/content/profile"
 
 export function Footer() {
   return (
-    <footer className="py-12 border-t border-border/40 relative">
+    <footer className="pt-12 pb-28 border-t border-border/40 relative">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
@@ -14,7 +14,7 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               {profile.footerTagline}
             </p>
-            <p className="text-xs text-muted-foreground/70 mt-2 font-mono">
+            <p className="text-xs text-muted-foreground mt-2 font-mono">
               © {new Date().getFullYear()} {profile.fullName}. All rights
               reserved.
             </p>

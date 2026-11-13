@@ -173,9 +173,9 @@ export function Hero() {
                   priority
                 />
               </div>
-              <div className="absolute -bottom-4 -left-4 glass-surface rounded-xl px-3 py-2">
+              <div className="absolute -bottom-4 -left-4 max-w-[17rem] bg-card/95 backdrop-blur-md border border-border/60 rounded-xl px-3 py-2 shadow-lg">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_hsl(142_76%_60%)]" />
+                  <div className="w-2 h-2 shrink-0 rounded-full bg-green-500" />
                   <span className="text-xs font-medium font-mono">
                     {profile.availability}
                   </span>

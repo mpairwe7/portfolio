@@ -64,7 +64,7 @@ export function About() {
                   <dt className="font-mono text-primary text-[10px] uppercase tracking-widest">
                     {label}
                   </dt>
-                  <dd className="text-muted-foreground mt-1">{value}</dd>
+                  <dd className="text-muted-foreground mt-1 [overflow-wrap:anywhere]">{value}</dd>
                 </div>
               ))}
             </dl>
