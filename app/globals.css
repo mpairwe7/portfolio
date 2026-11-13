@@ -610,14 +610,36 @@
     .resume-skills li {
       letter-spacing: 0.04em !important;
     }
-    .resume-main-hr { background: var(--accent) !important; }
+    .resume-main-section { margin-bottom: 1.25rem !important; }
+    .resume-main-hr { background: var(--accent) !important; margin-bottom: 0.8rem !important; }
+    .resume-exp {
+      grid-template-columns: 120px 1fr !important;
+      gap: 0.9rem !important;
+      margin-bottom: 1.1rem !important;
+    }
+    .resume-exp-role {
+      font-size: 0.88rem !important;
+      margin-bottom: 0.35rem !important;
+    }
+    .resume-exp-bullets {
+      gap: 0.22rem !important;
+      margin-bottom: 0.4rem !important;
+    }
+    .resume-exp-bullets li {
+      font-size: 0.82rem !important;
+      line-height: 1.4 !important;
+    }
+    .resume-exp-tags {
+      font-size: 0.65rem !important;
+      margin-top: 0.3rem !important;
+    }
     .resume-main-h,
     .resume-exp-role,
     .resume-exp-company,
     .resume-cert-name,
     .resume-contact a { color: var(--ink) !important; }
     /* Keep the contact line tidy and on a single row in the narrow print column */
-    .resume-header { padding-bottom: 0.55rem !important; margin-bottom: 1.2rem !important; }
+    .resume-header { padding-bottom: 0.4rem !important; margin-bottom: 0.9rem !important; }
     .resume-contact {
       justify-content: flex-start !important;
       gap: 0.3rem 0.85rem !important;
@@ -628,6 +650,10 @@
     .resume-certs li,
     .resume-refs li,
     .resume-side-section { break-inside: avoid; }
+    .print-break-before {
+      break-before: page !important;
+      page-break-before: always !important;
+    }
     a { text-decoration: none !important; }
   }
 
