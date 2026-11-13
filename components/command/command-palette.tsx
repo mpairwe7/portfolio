@@ -33,6 +33,7 @@ import {
 } from "lucide-react"
 import { toast } from "sonner"
 import { OPEN_COMMAND_PALETTE } from "@/lib/command-events"
+import { useScrollNav } from "@/hooks/use-scroll-nav"
 import { navItems } from "@/lib/content/nav"
 import { profile } from "@/lib/content/profile"
 import { ionatec } from "@/lib/content/ionatec"
@@ -54,6 +55,7 @@ const NAV_ICON = {
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false)
+  const { showBackToTop: pastHero } = useScrollNav()
   const router = useRouter()
 
   useEffect(() => {
@@ -102,9 +104,12 @@ export function CommandPalette() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open command palette"
-        className="hidden md:inline-flex fixed bottom-8 left-8 z-40 items-center gap-2 glass-surface-subtle px-3 py-2 rounded-full text-xs font-mono text-muted-foreground hover:text-foreground transition-colors border-border/60"
+        tabIndex={pastHero ? -1 : undefined}
+        className={`hidden md:inline-flex fixed bottom-8 left-8 z-40 items-center gap-2 glass-surface-subtle px-3 py-2 rounded-full text-xs font-mono text-muted-foreground hover:text-foreground transition-all duration-300 border-border/60 ${
+          pastHero ? "opacity-0 translate-y-2 pointer-events-none" : "opacity-100"
+        }`}
       >
-        <span className="opacity-70">Search ·</span>
+        <span>Search ·</span>
         <kbd className="px-1.5 py-0.5 bg-primary/10 border border-primary/20 rounded text-primary text-[10px]">
           ⌘K
         </kbd>

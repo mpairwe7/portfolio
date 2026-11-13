@@ -7,9 +7,9 @@ import type { Project } from "@/lib/content/types"
 import { cn } from "@/lib/utils"
 
 const STATUS_STYLES = {
-  shipped: "bg-green-500/15 text-green-400 border-green-500/25",
-  "in-progress": "bg-primary/15 text-primary border-primary/30",
-  archived: "bg-muted text-muted-foreground border-border",
+  shipped: "bg-background/85 text-green-700 dark:text-green-400 border-green-500/40",
+  "in-progress": "bg-background/85 text-primary border-primary/40",
+  archived: "bg-background/85 text-muted-foreground border-border",
 } as const
 
 const STATUS_LABEL = {

@@ -51,7 +51,7 @@ export function Ionatec() {
                 <p className="text-lg md:text-xl leading-relaxed mb-5 text-foreground/90">
                   {ionatec.tagline}
                 </p>
-                <p className="text-base text-muted-foreground leading-relaxed mb-6">
+                <p className="text-base text-muted-foreground leading-relaxed mb-6 max-w-[60ch]">
                   {ionatec.mission}
                 </p>
 
