@@ -73,6 +73,28 @@ export const projects: Project[] = [
 
   // ── Shipped work ──────────────────────────────────────────────────────────
   {
+    slug: "optiscanai",
+    title: "OptiscanAI",
+    summary:
+      "AI-powered clinical retinal disease screening platform classifying 24+ conditions with RETFound ViT-Large, LoRA adapters, clinical knowledge graphs, and LangGraph agentic workflows — deployed on Crane Cloud GPU with mobile money billing.",
+    image: "/images/optiscanai.png",
+    category: "mlops",
+    stack: [
+      "PyTorch",
+      "FastAPI",
+      "Next.js 16",
+      "LangGraph",
+      "RETFound",
+      "Crane Cloud",
+      "Flutter",
+      "Ray Serve",
+    ],
+    liveUrl: "https://optiscan-ai-gpu-dd6de124.ahumain.cranecloud.io",
+    repoUrl: "https://github.com/mpairwe7/OptiscanAI",
+    status: "shipped",
+    featured: false,
+  },
+  {
     slug: "aws-serverless-ecommerce",
     title: "AWS Serverless E-commerce Platform",
     summary:

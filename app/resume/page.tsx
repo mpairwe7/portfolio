@@ -26,14 +26,18 @@ const lastName = rest.join(" ")
 const ICON_ACCENT = "#c47a10"
 
 // Flatten all featured-stack tools into a compact sidebar skill list
-const skillList = skillStacks
-  .filter((s) => s.featured)
-  .flatMap((s) => s.tools)
-  .concat(
+const skillList = Array.from(
+  new Set(
     skillStacks
-      .filter((s) => !s.featured)
+      .filter((s) => s.featured)
       .flatMap((s) => s.tools)
+      .concat(
+        skillStacks
+          .filter((s) => !s.featured)
+          .flatMap((s) => s.tools)
+      )
   )
+)
 
 export default function ResumePage() {
   return (
@@ -76,22 +80,22 @@ export default function ResumePage() {
             <p>{lastName.toUpperCase()}</p>
           </div>
           <p className="resume-title">
-            DEVSECOPS · CLOUD-NATIVE · ML · AGENTIC AI ENGINEER
+            SOFTWARE ENGINEERING STUDENT · CLOUD-NATIVE · ML
           </p>
 
           <SideSection title="About">
             <p className="resume-about">
-              DevSecOps engineer and applied ML practitioner. Co-founder of
-              IONATECH (ionatec.com), an AI startup, and engineering partner
-              at Sauti Health (sautihealth.com), building emergency-dispatch
-              infrastructure for sub-Saharan Africa. By day, CI/CD, cloud, and
-              security posture at AIBOS Uganda. Outside: training models,
-              building agentic systems on LangChain and LangGraph,
-              and instrumenting MCP servers that expose tools to LLMs.
+              Software engineering student at Makerere University (Expected
+              graduation: Jan 2027, CGPA: 4.38 / 5.0). Proficient in Linux
+              system administration, Python (Django/Flask), Laravel, React, and
+              Git, with practical hands-on experience in machine learning
+              (NumPy, Pandas, scikit-learn), Docker, Kubernetes, and mobile
+              development (Flutter, React Native). Active across cloud
+              platforms, emergency dispatch backends, and applied ML systems.
             </p>
           </SideSection>
 
-          <SideSection title="Skills">
+          <SideSection title="Skills" className="print-break-before">
             <ul className="resume-skills">
               {skillList.map((s) => (
                 <li key={s}>{s.toUpperCase()}</li>
@@ -99,7 +103,7 @@ export default function ResumePage() {
             </ul>
           </SideSection>
 
-          <SideSection title="Links">
+          <SideSection title="Links" className="print-break-before">
             <ul className="resume-links">
               <li>
                 <Globe className="resume-link-icon" color={ICON_ACCENT} aria-hidden="true" />
@@ -154,7 +158,7 @@ export default function ResumePage() {
             </ul>
           </SideSection>
 
-          <SideSection title="Personal Details">
+          <SideSection title="Personal Details" className="print-break-before">
             <dl className="resume-personal">
               <div>
                 <dt>Date of Birth</dt>
@@ -171,7 +175,7 @@ export default function ResumePage() {
             </dl>
           </SideSection>
 
-          <SideSection title="References">
+          <SideSection title="References" className="print-break-before">
             <ul className="resume-refs">
               {references.map((r) => (
                 <li key={r.name}>
@@ -206,7 +210,10 @@ export default function ResumePage() {
           <MainSection title="Work Experience">
             <div className="resume-exp-list">
               {experiences.map((exp, i) => (
-                <article key={`${exp.company}-${i}`} className="resume-exp">
+                <article
+                  key={`${exp.company}-${i}`}
+                  className={`resume-exp ${i === 2 || i === 4 ? "print-break-before" : ""}`}
+                >
                   <div className="resume-exp-left">
                     <p className="resume-exp-company">{exp.company}</p>
                     <p className="resume-exp-loc">Kampala</p>
@@ -226,7 +233,7 @@ export default function ResumePage() {
             </div>
           </MainSection>
 
-          <MainSection title="Education">
+          <MainSection title="Education" className="print-break-before">
             <div className="resume-edu-list">
               {education.map((edu, i) => (
                 <article key={`${edu.school}-${i}`} className="resume-exp">
@@ -248,7 +255,7 @@ export default function ResumePage() {
             </div>
           </MainSection>
 
-          <MainSection title="Certifications">
+          <MainSection title="Certifications" className="print-break-before">
             <ul className="resume-certs">
               {certifications.map((c) => (
                 <li key={c.name}>
@@ -267,13 +274,15 @@ export default function ResumePage() {
 
 function SideSection({
   title,
+  className,
   children,
 }: {
   title: string
+  className?: string
   children: React.ReactNode
 }) {
   return (
-    <section className="resume-side-section">
+    <section className={`resume-side-section ${className || ""}`}>
       <h2 className="resume-side-h">{title.toUpperCase()}</h2>
       {children}
     </section>
@@ -282,13 +291,15 @@ function SideSection({
 
 function MainSection({
   title,
+  className,
   children,
 }: {
   title: string
+  className?: string
   children: React.ReactNode
 }) {
   return (
-    <section className="resume-main-section">
+    <section className={`resume-main-section ${className || ""}`}>
       <h2 className="resume-main-h">{title.toUpperCase()}</h2>
       <span className="resume-main-hr" aria-hidden="true" />
       {children}
